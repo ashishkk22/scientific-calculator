@@ -61,6 +61,10 @@ const array = [
   "-",
   "/",
   "*",
+  "^2",
+  "^",
+  "(",
+  ")",
 ];
 const inputField = document.querySelector("input");
 const mainElementForEvents = document.querySelector("#calculator-div");
@@ -70,19 +74,34 @@ mainElementForEvents.addEventListener("click", btnClickHandler);
 
 function btnClickHandler(e) {
   if (e.target != e.currentTarget) {
+    console.log(simpleCalString);
     var clickedItem = e.target.id;
     console.log(clickedItem);
-    if (array.includes(clickedItem)) {
-      simpleCalculation(clickedItem);
-    } else if (clickedItem == "=") {
-      calculationOfSimpleCal();
-    } else if (clickedItem == "remove-char") {
-      removeCharFromCal(simpleCalString);
-    } else if (clickedItem == "reset-char") {
-      simpleCalString = "";
-      setCharAtInputField(simpleCalString);
+    switch (clickedItem) {
+      case isOperationPresent(clickedItem):
+        simpleCalculation(clickedItem);
+        break;
+      case "=":
+        calculationOfSimpleCal(simpleCalString);
+        break;
+      case "remove-char":
+        removeCharFromCal(simpleCalString);
+        break;
+      case "reset-char":
+        simpleCalString = "";
+        setCharAtInputField(simpleCalString);
+        break;
+      default:
+        break;
     }
-    //try to implement switch case
+  }
+}
+
+function isOperationPresent(clickedItem) {
+  if (array.includes(clickedItem)) {
+    return clickedItem;
+  } else {
+    return "Not-Present";
   }
 }
 
@@ -102,5 +121,9 @@ function removeCharFromCal(string) {
 }
 
 function setCharAtInputField(string) {
+  if (string == undefined) {
+    inputField.value = "";
+    return;
+  }
   inputField.value = string;
 }
