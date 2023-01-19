@@ -61,8 +61,7 @@ const array = [
   "-",
   "/",
   "*",
-  "^2",
-  "^",
+  // "^",
   "(",
   ")",
 ];
@@ -91,6 +90,22 @@ function btnClickHandler(e) {
         simpleCalString = "";
         setCharAtInputField(simpleCalString);
         break;
+      case "^2":
+        powerCal(simpleCalString);
+        break;
+      case "10sqrt":
+        powerCal(10, simpleCalString);
+        break;
+      case "sqrt":
+        sqrtCal(simpleCalString);
+        break;
+      case "pi":
+        const pi = eval("22/7");
+        setCharAtInputField(pi);
+        break;
+      case "1/x":
+        oneByXCal(simpleCalString);
+        break;
       default:
         break;
     }
@@ -109,7 +124,9 @@ function calculationOfSimpleCal() {
   simpleCalString = eval(simpleCalString);
   setCharAtInputField(simpleCalString);
 }
+
 function simpleCalculation(string) {
+  if (simpleCalString == undefined) simpleCalString = "";
   simpleCalString += string;
   setCharAtInputField(simpleCalString);
 }
@@ -118,6 +135,32 @@ function removeCharFromCal(string) {
   string = string.substring(0, string.length - 1);
   simpleCalString = string;
   setCharAtInputField(simpleCalString);
+}
+
+function powerCal(string, power = 2) {
+  simpleCalString = Math.pow(string, power);
+  setCharAtInputField(simpleCalString);
+}
+
+function sqrtCal(simpleCalString) {
+  simpleCalString = Math.sqrt(simpleCalString);
+  if (isNaN(simpleCalString)) {
+    window.alert("Please enter the valid input!");
+    simpleCalString = "";
+  }
+  setCharAtInputField(simpleCalString);
+}
+
+function oneByXCal(string) {
+  if (string == "0" || string == "")
+    return window.alert("Please enter the valid input");
+  let result = parseFloat(1 / string).toPrecision(2);
+  if (isNaN(result) || result == "infinity") {
+    window.alert("Please enter the valid input!");
+    simpleCalString = "";
+  }
+  simpleCalString = result;
+  setCharAtInputField(result);
 }
 
 function setCharAtInputField(string) {
