@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- main div  -->
+    <div
+      class="container min-vh-100 d-flex justify-content-center align-items-center"
+    >
+      <!-- card container  -->
+      <div
+        class="center-container bg-light d-flex justify-content-center"
+        id="calculator-div"
+      >
+        <div>Calculator</div>
+        <div>
+          <input
+            type="text"
+            class="form-control shadow-none"
+            aria-label="Username"
+            aria-describedby="basic-addon1"
+            id="input-field"
+            readonly
+          />
+        </div>
+        <div class="btn-row d-flex flex-row justify-content-start">
+          <button class="btn border-none p-1"><div>DEG</div></button>
+          <button class="btn">F-E</button>
+        </div>
+        <div
+          class="btn-row d-flex flex-row justify-content-center align-items-center mt-2"
+        >
+          <button class="btn"><b>MC</b></button>
+          <button class="btn"><b>MR</b></button>
+          <button class="btn"><b>M+</b></button>
+          <button class="btn"><b>M-</b></button>
+          <button class="btn"><b>MS</b></button>
+        </div>
+        <div
+          class="d-flex flex-row justify-content-start gap-4 align-items-center mt-3 ms-2"
+        >
+          <p>Trigonometry</p>
+          <p>function</p>
+        </div>
+        <div
+          class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
+        >
+          <button class="btn">2 <sup>nd</sup></button>
+          <button class="btn">π</button>
+          <button class="btn">e</button>
+          <button class="btn">C</button>
+          <button class="btn">
+            <img
+              src="./images/remove-icon.png"
+              alt="remove-icon"
+              class="remove-icon-img"
+            />
+          </button>
+        </div>
+        <div
+          class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
+        >
+          <button class="btn">x<sup>2</sup></button>
+          <button class="btn">1/x</button>
+          <button class="btn">|x|</button>
+          <button class="btn">exp</button>
+          <button class="btn">mod</button>
+        </div>
+        <div
+          class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
+        >
+          <button class="btn">2&#8730;x</button>
+          <button class="btn">(</button>
+          <button class="btn">)</button>
+          <button class="btn">n!</button>
+          <button class="btn fs-4" id="/">÷</button>
+        </div>
+        <div
+          class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
+        >
+          <button class="btn">x<sup>y</sup></button>
+          <button class="btn fw-bold" id="7">7</button>
+          <button class="btn fw-bold" id="8">8</button>
+          <button class="btn fw-bold" id="9">9</button>
+          <button class="btn fs-6" id="*">X</button>
+        </div>
+        <div
+          class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
+        >
+          <button class="btn">10<sup>x</sup></button>
+          <button class="btn fw-bold" id="4">4</button>
+          <button class="btn fw-bold" id="5">5</button>
+          <button class="btn fw-bold" id="6">6</button>
+          <button class="btn fw-bold fs-4" id="-">-</button>
+        </div>
+        <div
+          class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
+        >
+          <button class="btn">log</button>
+          <button class="btn fw-bold" id="1">1</button>
+          <button class="btn fw-bold" id="2">2</button>
+          <button class="btn fw-bold" id="3">3</button>
+          <button class="btn fs-4" id="+">+</button>
+        </div>
+        <div
+          class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
+        >
+          <button class="btn">ln</button>
+          <button class="btn">+/-</button>
+          <button class="btn fw-bold" id="0">0</button>
+          <button class="btn">.</button>
+          <button class="btn btn-equal fs-4" id="=">=</button>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/app.js" defer></script>
+  </body>
+</html>
