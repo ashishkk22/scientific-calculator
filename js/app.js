@@ -46,7 +46,23 @@
 
 let simpleCalString = "";
 
-const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "+", "-", "/", "*"];
+const array = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "0",
+  "+",
+  "-",
+  "/",
+  "*",
+];
+const inputField = document.querySelector("input");
 const mainElementForEvents = document.querySelector("#calculator-div");
 
 //only one main event listener for all the btn.
@@ -56,5 +72,35 @@ function btnClickHandler(e) {
   if (e.target != e.currentTarget) {
     var clickedItem = e.target.id;
     console.log(clickedItem);
+    if (array.includes(clickedItem)) {
+      simpleCalculation(clickedItem);
+    } else if (clickedItem == "=") {
+      calculationOfSimpleCal();
+    } else if (clickedItem == "remove-char") {
+      removeCharFromCal(simpleCalString);
+    } else if (clickedItem == "reset-char") {
+      simpleCalString = "";
+      setCharAtInputField(simpleCalString);
+    }
+    //try to implement switch case
   }
+}
+
+function calculationOfSimpleCal() {
+  simpleCalString = eval(simpleCalString);
+  setCharAtInputField(simpleCalString);
+}
+function simpleCalculation(string) {
+  simpleCalString += string;
+  setCharAtInputField(simpleCalString);
+}
+
+function removeCharFromCal(string) {
+  string = string.substring(0, string.length - 1);
+  simpleCalString = string;
+  setCharAtInputField(simpleCalString);
+}
+
+function setCharAtInputField(string) {
+  inputField.value = string;
 }
