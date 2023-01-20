@@ -33,6 +33,7 @@
             id="input-field"
             readonly
           />
+          <p class="text-center" id="error-div"></p>
         </div>
         <div class="btn-row d-flex flex-row justify-content-start">
           <button class="btn border-none p-1"><div>DEG</div></button>
@@ -56,7 +57,7 @@
         <div
           class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
         >
-          <button class="btn">2 <sup>nd</sup></button>
+          <button class="btn" id="second-fn-trigger">2 <sup>nd</sup></button>
           <button class="btn" id="pi">π</button>
           <button class="btn">e</button>
           <button class="btn" id="reset-char">C</button>
@@ -72,7 +73,12 @@
         <div
           class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
         >
-          <button class="btn" id="^2">x<sup>2</sup></button>
+          <button class="btn d-inline 2nd-toggle-btn" id="^2">
+            x<sup>2</sup>
+          </button>
+          <button class="btn d-none 2nd-toggle-btn" id="^3">
+            x<sup>3</sup>
+          </button>
           <button class="btn" id="1/x">1/x</button>
           <button class="btn" id="abs">|x|</button>
           <button class="btn">exp</button>
@@ -81,16 +87,26 @@
         <div
           class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
         >
-          <button class="btn" id="sqrt">2&#8730;x</button>
+          <button class="btn d-inline 2nd-toggle-btn" id="sqrt">
+            2&#8730;x
+          </button>
+          <button class="btn d-none 2nd-toggle-btn" id="cube-root">
+            3&#8730;x
+          </button>
           <button class="btn" id="(">(</button>
           <button class="btn" id=")">)</button>
-          <button class="btn">n!</button>
+          <button class="btn" id="factorial">n!</button>
           <button class="btn fs-4" id="/">÷</button>
         </div>
         <div
           class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
         >
-          <button class="btn" id="^">x<sup>y</sup></button>
+          <button class="btn d-inline 2nd-toggle-btn" id="^">
+            x<sup>y</sup>
+          </button>
+          <button class="btn d-none 2nd-toggle-btn" id="sqrt-y">
+            y&#8730;x
+          </button>
           <button class="btn fw-bold" id="7">7</button>
           <button class="btn fw-bold" id="8">8</button>
           <button class="btn fw-bold" id="9">9</button>
@@ -99,7 +115,12 @@
         <div
           class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
         >
-          <button class="btn" id="10sqrt">10<sup>x</sup></button>
+          <button class="btn d-inline 2nd-toggle-btn" id="10sq">
+            10<sup>x</sup>
+          </button>
+          <button class="btn d-none 2nd-toggle-btn" id="2sq">
+            2<sup>x</sup>
+          </button>
           <button class="btn fw-bold" id="4">4</button>
           <button class="btn fw-bold" id="5">5</button>
           <button class="btn fw-bold" id="6">6</button>
@@ -108,7 +129,10 @@
         <div
           class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
         >
-          <button class="btn">log</button>
+          <button class="btn d-inline 2nd-toggle-btn" id="log-x">log</button>
+          <button class="btn d-none 2nd-toggle-btn" id="log-base-x">
+            log <sub>y</sub>x
+          </button>
           <button class="btn fw-bold" id="1">1</button>
           <button class="btn fw-bold" id="2">2</button>
           <button class="btn fw-bold" id="3">3</button>
@@ -117,7 +141,10 @@
         <div
           class="btn-row d-flex flex-row justify-content-center align-items-center mt-1"
         >
-          <button class="btn">ln</button>
+          <button class="btn d-inline 2nd-toggle-btn">ln</button>
+          <button class="btn d-none 2nd-toggle-btn" id="e-sq-x">
+            e <sup>x</sup>
+          </button>
           <button class="btn">+/-</button>
           <button class="btn fw-bold" id="0">0</button>
           <button class="btn">.</button>

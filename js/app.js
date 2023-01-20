@@ -1,49 +1,3 @@
-// let startingString = "";
-// const buttons = document.querySelectorAll(".btn");
-// const inputField = document.querySelector("input");
-
-// console.log(buttons);
-// console.log(buttons);
-
-// let allButtonArr = Array.from(buttons);
-
-// allButtonArr.map(button => {
-//   button.addEventListener("click", e => {
-//     if (e.target.innerHTML == "=") {
-//       startingString = eval(startingString);
-//       console.log(startingString);
-//       setInputFiled(startingString);
-//       return;
-//     } else if (e.target.innerHTML == "C") {
-//       startingString = "";
-//       setInputFiled(startingString);
-//       return;
-//     } else if (e.target.innerHTML.length >= 5) {
-//       console.log(startingString);
-//       startingString = startingString.substring(0, startingString.length - 1);
-//       setInputFiled(startingString);
-//       return;
-//     } else if (startingString == undefined) {
-//       startingString = "";
-//     }
-//     startingString += e.target.innerHTML;
-//     setInputFiled(startingString);
-//     console.log(e.target.innerHTML);
-//   });
-// });
-
-// const setInputFiled = string => {
-//   if (string !== undefined) {
-//     inputField.value = string;
-//   } else {
-//     inputField.value = "";
-//   }
-// };
-// event.currentTarget refers to the element that the listener was bound to.
-// Here in the demo we can see if we do actually click the div (possible because of enormous padding) the the match evaluator e.target === e.currentTarget is in fact true.
-
-//to remove the many (42) event listeners we are doing this (same as react).
-
 let simpleCalString = "";
 
 const array = [
@@ -68,11 +22,16 @@ const array = [
 ];
 const inputField = document.querySelector("input");
 const mainElementForEvents = document.querySelector("#calculator-div");
+// const secondOptionBtn = document.getElementById("#second-fn-trigger");
 
-//only one main event listener for all the btn.
+// secondOptionBtn.addEventListener('click', () => {});
+
+//only one main event listener for all the btn (event delegation)
 mainElementForEvents.addEventListener("click", btnClickHandler);
 
 function btnClickHandler(e) {
+  //currentTarget --> element that the listener was bound to.
+  //target --> on we do actually click
   if (e.target != e.currentTarget) {
     console.log(simpleCalString);
     var clickedItem = e.target.id;
@@ -94,7 +53,7 @@ function btnClickHandler(e) {
       case "^2":
         powerCal(simpleCalString);
         break;
-      case "10sqrt":
+      case "10sq":
         powerCal(10, simpleCalString);
         break;
       case "sqrt":
@@ -109,6 +68,12 @@ function btnClickHandler(e) {
         break;
       case "abs":
         absCal(simpleCalString);
+        break;
+      case "factorial":
+        factorialOfNCal(simpleCalString);
+        break;
+      case "second-fn-trigger":
+        secondBtnTriggerForToggle();
         break;
       default:
         break;
@@ -135,6 +100,25 @@ function simpleCalculation(string) {
   setCharAtInputField(simpleCalString);
 }
 
+function secondBtnTriggerForToggle() {
+  const allBtnForToggle = document.getElementsByClassName("2nd-toggle-btn");
+  Array.from(allBtnForToggle).map(visibleBtn => {
+    //visibleBtn ==> DOMTokenList
+    if (visibleBtn.classList.contains("d-inline")) {
+      visibleBtn.classList.toggle("d-none");
+    } else {
+      visibleBtn.classList.toggle("d-none");
+    }
+  });
+}
+
+function showErrForSomeTime(string) {
+  document.getElementById("error-div").innerHTML = string;
+  setTimeout(() => {
+    document.getElementById("error-div").innerHTML = "";
+  }, 5000);
+}
+
 function removeCharFromCal(string) {
   string = string.substring(0, string.length - 1);
   simpleCalString = string;
@@ -149,7 +133,7 @@ function powerCal(string, power = 2) {
 function sqrtCal(simpleCalString) {
   simpleCalString = Math.sqrt(simpleCalString);
   if (isNaN(simpleCalString)) {
-    window.alert("Please enter the valid input!");
+    showErrForSomeTime("Please enter the valid input!");
     simpleCalString = "";
   }
   setCharAtInputField(simpleCalString);
@@ -157,10 +141,10 @@ function sqrtCal(simpleCalString) {
 
 function oneByXCal(string) {
   if (string == "0" || string == "")
-    return window.alert("Please enter the valid input");
+    return showErrForSomeTime("Please enter the valid input");
   let result = parseFloat(1 / string).toPrecision(2);
   if (isNaN(result) || result == "infinity") {
-    window.alert("Please enter the valid input!");
+    showErrForSomeTime("Please enter the valid input!");
     simpleCalString = "";
   }
   simpleCalString = result;
@@ -172,6 +156,18 @@ function absCal(string) {
   setCharAtInputField(simpleCalString);
 }
 
+//fn to
+function factorialOfNCal(string) {
+  var answer = 1;
+  for (i = 1; i <= parseInt(string); i++) {
+    answer = answer * i;
+    console.log(answer);
+  }
+  simpleCalString = answer;
+  setCharAtInputField(simpleCalString);
+}
+
+//fn to set the string in the input field
 function setCharAtInputField(string) {
   if (string == undefined) {
     inputField.value = "";
