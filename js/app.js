@@ -1,5 +1,7 @@
 let simpleCalString = "";
-
+Number.prototype.factorial = function () {
+  return this > 0 ? this * (this - 1).factorial() : 1; //factorial logic
+};
 const array = [
   "1",
   "2",
@@ -11,14 +13,23 @@ const array = [
   "8",
   "9",
   "0",
+  ".",
   "+",
   "-",
   "/",
   "*",
-  // "^",
+  "**",
+  "!",
+  "**2",
+  "**3",
   "%",
+  "rt",
   "(",
   ")",
+  "e",
+  "π",
+  "log",
+  "ln",
 ];
 const inputField = document.querySelector("input");
 const mainElementForEvents = document.querySelector("#calculator-div");
@@ -36,6 +47,7 @@ function btnClickHandler(e) {
     console.log(simpleCalString);
     var clickedItem = e.target.id;
     console.log(clickedItem);
+    console.log(simpleCalString, "sstrign");
     switch (clickedItem) {
       case isOperationPresent(clickedItem):
         simpleCalculation(clickedItem);
@@ -50,27 +62,23 @@ function btnClickHandler(e) {
         simpleCalString = "";
         setCharAtInputField(simpleCalString);
         break;
-      case "^2":
-        powerCal(simpleCalString);
-        break;
       case "10sq":
-        powerCal(10, simpleCalString);
+        powerAndRootCal(10, 1, simpleCalString);
         break;
       case "sqrt":
-        sqrtCal(simpleCalString);
+        powerAndRootCal(simpleCalString, "2");
         break;
-      case "pi":
-        const pi = eval("22/7");
-        setCharAtInputField(pi);
+      case "cbrt":
+        powerAndRootCal(simpleCalString, "3");
         break;
       case "1/x":
-        oneByXCal(simpleCalString);
+        stringPreAdder(simpleCalString, "1/");
+        break;
+      case "2**":
+        stringPreAdder(simpleCalString, "2**");
         break;
       case "abs":
         absCal(simpleCalString);
-        break;
-      case "factorial":
-        factorialOfNCal(simpleCalString);
         break;
       case "second-fn-trigger":
         secondBtnTriggerForToggle();
@@ -81,17 +89,22 @@ function btnClickHandler(e) {
   }
 }
 
+Number.prototype.factorial = function () {
+  console.log(this);
+  return this > 0 ? this * (this - 1).factorial() : 1; //factorial logic
+};
+
 function isOperationPresent(clickedItem) {
   if (array.includes(clickedItem)) {
+    console.log(clickedItem, "from operation present");
     return clickedItem;
   } else {
-    return "Not-Present";
+    return "#";
   }
 }
 
 function calculationOfSimpleCal() {
-  simpleCalString = eval(simpleCalString);
-  setCharAtInputField(simpleCalString);
+  simpleCalString = stringCalHandler(simpleCalString);
 }
 
 function simpleCalculation(string) {
@@ -125,30 +138,15 @@ function removeCharFromCal(string) {
   setCharAtInputField(simpleCalString);
 }
 
-function powerCal(string, power = 2) {
-  simpleCalString = Math.pow(string, power);
+function powerAndRootCal(string, factor = 1, power = 1) {
+  simpleCalString = Math.pow(string, power / factor);
   setCharAtInputField(simpleCalString);
 }
 
-function sqrtCal(simpleCalString) {
-  simpleCalString = Math.sqrt(simpleCalString);
-  if (isNaN(simpleCalString)) {
-    showErrForSomeTime("Please enter the valid input!");
-    simpleCalString = "";
-  }
+function stringPreAdder(string, addString) {
+  string = addString + string;
+  simpleCalString = string;
   setCharAtInputField(simpleCalString);
-}
-
-function oneByXCal(string) {
-  if (string == "0" || string == "")
-    return showErrForSomeTime("Please enter the valid input");
-  let result = parseFloat(1 / string).toPrecision(2);
-  if (isNaN(result) || result == "infinity") {
-    showErrForSomeTime("Please enter the valid input!");
-    simpleCalString = "";
-  }
-  simpleCalString = result;
-  setCharAtInputField(result);
 }
 
 function absCal(string) {
@@ -156,14 +154,54 @@ function absCal(string) {
   setCharAtInputField(simpleCalString);
 }
 
-//fn to
-function factorialOfNCal(string) {
-  var answer = 1;
-  for (i = 1; i <= parseInt(string); i++) {
-    answer = answer * i;
-    console.log(answer);
+function stringCalHandler(str) {
+  try {
+    console.log(str, "from string cal handler");
+    str = str?.replaceAll("!", '["factorial"]()');
+    str = str?.replaceAll("e", "2.7182");
+    str = str?.replaceAll("π", "3.14");
+    if (str.includes("rt")) {
+      customRootCal(str);
+      return;
+    } else if (str.includes("log")) {
+      logCal(str);
+      return;
+    } else if (str.includes("ln")) {
+      logCal(str, "2.7182");
+      return;
+    }
+    console.log(str, "stringCalHandler");
+    simpleCalString = eval(str);
+  } catch (err) {
+    showErrForSomeTime(err);
+    return;
   }
-  simpleCalString = answer;
+  setCharAtInputField(simpleCalString);
+}
+
+function logCal(str, base = 10) {
+  let result = "";
+  if ((base = 10)) {
+    result =
+      Math.log(str.slice(str.indexOf("g") + 1, str.length)) / Math.log(base);
+  } else {
+    result =
+      Math.log(str.slice(str.indexOf("n") + 1, str.length)) / Math.log(base);
+  }
+  simpleCalString = result;
+  setCharAtInputField(result);
+}
+
+function customRootCal(str) {
+  let firstNumber = str.slice(0, str.indexOf("rt"));
+  let secondNumber = str.slice(str.indexOf("rt") + 2, str.length);
+  let result = "";
+  try {
+    result = eval(`${secondNumber ** (1 / firstNumber)}`);
+  } catch (error) {
+    showErrForSomeTime(error);
+  }
+  if (isNaN(result)) showErrForSomeTime("Please enter valid operation");
   setCharAtInputField(simpleCalString);
 }
 

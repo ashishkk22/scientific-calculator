@@ -36,18 +36,12 @@
 .remove-icon-img{
     width: 1.5rem;
 }
-.btn-equal{
+.btn-blue{
     background-color: #6690ce;
 }
-.btn-equal:hover{
+.btn-blue:hover{
     background-color: #4b6da0;
     box-shadow: #6690ce 0px 5px 15px;
-}
-.btn-row{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
 }
 #input-field{
     height: 6rem;
