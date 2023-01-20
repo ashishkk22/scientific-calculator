@@ -62,6 +62,7 @@ const array = [
   "/",
   "*",
   // "^",
+  "%",
   "(",
   ")",
 ];
@@ -105,6 +106,9 @@ function btnClickHandler(e) {
         break;
       case "1/x":
         oneByXCal(simpleCalString);
+        break;
+      case "abs":
+        absCal(simpleCalString);
         break;
       default:
         break;
@@ -161,6 +165,11 @@ function oneByXCal(string) {
   }
   simpleCalString = result;
   setCharAtInputField(result);
+}
+
+function absCal(string) {
+  simpleCalString = Math.abs(string);
+  setCharAtInputField(simpleCalString);
 }
 
 function setCharAtInputField(string) {
