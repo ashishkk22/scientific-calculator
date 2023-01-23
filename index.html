@@ -36,8 +36,8 @@
           <p class="text-center" id="error-div"></p>
         </div>
         <div class="d-flex flex-row justify-content-start ms-1">
-          <button class="btn border-none p-1 bg-transparent">
-            <div>DEG</div>
+          <button class="btn border-none p-1 bg-transparent" id="unit-of-angle">
+            DEG
           </button>
           <button class="btn bg-transparent">F-E</button>
         </div>
@@ -49,6 +49,7 @@
           <button class="btn bg-transparent"><b>M+</b></button>
           <button class="btn bg-transparent"><b>M-</b></button>
           <button class="btn bg-transparent"><b>MS</b></button>
+          <button class="btn bg-transparent"><b>M</b></button>
         </div>
         <div class="d-flex flex-row justify-content-start align-items-center">
           <div class="dropdown border-0">
@@ -76,23 +77,42 @@
                 <button class="btn btn-small" id="second-fn-trigno">
                   2 <sup>nd</sup>
                 </button>
-                <button class="btn btn-small d-inline trigno-btn" id="abs">
+                <button
+                  class="btn btn-small d-inline trigno-h-btn trigno-btn"
+                  id="abs"
+                >
                   sin
                 </button>
-                <button class="btn btn-small d-none trigno-btn" id="abs">
+                <button
+                  class="btn btn-small d-none trigno-btn trigno-h-inv"
+                  id="abs"
+                >
                   sin <sup>-1</sup>
+                </button>
+                <button class="btn btn-small d-none trigno-h-inv" id="abs">
+                  sinh <sup>-1</sup>
                 </button>
                 <button class="btn btn-small d-none trigno-h-btn" id="abs">
                   sinh
                 </button>
-                <button class="btn btn-small d-inline trigno-btn">cos</button>
-                <button class="btn btn-small d-none trigno-btn">
+                <button class="btn btn-small d-inline trigno-h-btn trigno-btn">
+                  cos
+                </button>
+                <button class="btn btn-small d-none trigno-btn trigno-h-inv">
                   cos <sup>-1</sup>
                 </button>
+                <button class="btn btn-small d-none trigno-h-inv">
+                  cosh <sup>-1</sup>
+                </button>
                 <button class="btn btn-small d-none trigno-h-btn">cosh</button>
-                <button class="btn btn-small d-inline trigno-btn">tan</button>
-                <button class="btn btn-small d-none trigno-btn">
+                <button class="btn btn-small d-inline trigno-h-btn trigno-btn">
+                  tan
+                </button>
+                <button class="btn btn-small d-none trigno-btn trigno-h-inv">
                   tan <sup>-1</sup>
+                </button>
+                <button class="btn btn-small d-none trigno-h-inv">
+                  tanh <sup>-1</sup>
                 </button>
                 <button class="btn btn-small d-none trigno-h-btn">tanh</button>
               </div>
@@ -100,23 +120,42 @@
                 <button class="btn btn-small" id="second-fn-trigno-h">
                   hyp
                 </button>
-                <button class="btn btn-small d-inline trigno-btn" id="abs">
+                <button
+                  class="btn btn-small d-inline trigno-h-btn trigno-btn"
+                  id="abs"
+                >
                   sec
                 </button>
-                <button class="btn btn-small d-none trigno-btn" id="abs">
+                <button
+                  class="btn btn-small d-none trigno-btn trigno-h-inv"
+                  id="abs"
+                >
                   sec <sup>-1</sup>
+                </button>
+                <button class="btn btn-small d-none trigno-h-inv" id="abs">
+                  sech <sup>-1</sup>
                 </button>
                 <button class="btn btn-small d-none trigno-h-btn" id="abs">
                   sech
                 </button>
-                <button class="btn btn-small d-inline trigno-btn">csc</button>
-                <button class="btn btn-small d-none trigno-btn">
+                <button class="btn btn-small d-inline trigno-h-btn trigno-btn">
+                  csc
+                </button>
+                <button class="btn btn-small d-none trigno-btn trigno-h-inv">
                   csc <sup>-1</sup>
                 </button>
+                <button class="btn btn-small d-none trigno-h-inv">
+                  csch <sup>-1</sup>
+                </button>
                 <button class="btn btn-small d-none trigno-h-btn">csch</button>
-                <button class="btn btn-small d-inline trigno-btn">cot</button>
-                <button class="btn btn-small d-none trigno-btn">
+                <button class="btn btn-small d-inline trigno-h-btn trigno-btn">
+                  cot
+                </button>
+                <button class="btn btn-small d-none trigno-btn trigno-h-inv">
                   cot <sup>-1</sup>
+                </button>
+                <button class="btn btn-small d-none trigno-h-inv">
+                  coth <sup>-1</sup>
                 </button>
                 <button class="btn btn-small d-none trigno-h-btn">coth</button>
               </div>
@@ -143,14 +182,20 @@
               aria-labelledby="dropdownMenuButton1"
             >
               <div class="d-flex flex-row">
-                <button class="btn btn-small" id="1/x">1/x</button>
-                <button class="btn btn-small" id="abs">|x|</button>
-                <button class="btn btn-small">exp</button>
+                <button class="btn btn-small" id="abs">
+                  &#x23A2;x &#x23A2;
+                </button>
+                <button class="btn btn-small" id="floor">
+                  &#x23A3;x&#x23A6;
+                </button>
+                <button class="btn btn-small" id="celi">
+                  &#x23A1;x&#x23A4;
+                </button>
               </div>
               <div class="d-flex flex-row">
-                <button class="btn btn-small" id="1/x">1/x</button>
-                <button class="btn btn-small" id="abs">|x|</button>
-                <button class="btn btn-small">exp</button>
+                <button class="btn btn-small" id="random-num">rand</button>
+                <button class="btn btn-small" id="abs">&#x21FE; dms</button>
+                <button class="btn btn-small text-center">&#x21FE; deg</button>
               </div>
             </ul>
           </div>
@@ -181,7 +226,7 @@
             x<sup>3</sup>
           </button>
           <button class="btn" id="1/x">1/x</button>
-          <button class="btn" id="abs">|x|</button>
+          <button class="btn" id="abs">&#x23A2;x &#x23A2;</button>
           <button class="btn">exp</button>
           <button class="btn" id="%">mod</button>
         </div>
@@ -227,7 +272,7 @@
           class="d-flex flex-row justify-content-center align-items-center mt-1"
         >
           <button class="btn d-inline 2nd-toggle-btn" id="log">log</button>
-          <button class="btn d-none 2nd-toggle-btn" id="log-base-x">
+          <button class="btn d-none 2nd-toggle-btn" id="log-diff-base">
             log <sub>y</sub>x
           </button>
           <button class="btn fw-bold" id="1">1</button>

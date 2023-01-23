@@ -1,4 +1,19 @@
 let simpleCalString = "";
+let flagForToggleBtn = false;
+let flagForHypBtn = false;
+let unitOfAngle = {
+  degree: true,
+  radian: false,
+  grad: false,
+};
+
+function setValueInLocal(key, value) {
+  localStorage.setItem(key, value);
+}
+
+function getValueFromLocal(key) {
+  return localStorage.getItem(key);
+}
 //factorial method on Number
 Number.prototype.factorial = function () {
   return this > 0 ? this * (this - 1).factorial() : 1; //factorial logic
@@ -41,8 +56,9 @@ mainElementForEvents.addEventListener("click", btnClickHandler);
 function btnClickHandler(e) {
   //currentTarget --> element that the listener was bound to.
   //target --> on we do actually click
+
   if (e.target != e.currentTarget) {
-    console.log(simpleCalString);
+    console.log(simpleCalString, "main string after every click");
     var clickedItem = e.target.id;
     console.log(clickedItem);
     switch (clickedItem) {
@@ -77,15 +93,46 @@ function btnClickHandler(e) {
       case "abs":
         absCal(simpleCalString);
         break;
+      case "random-num":
+        randomNumberGenerator();
+        break;
+      case "floor":
+        floorNumberCal();
+        break;
+      case "celi":
+        celiNumberCal();
+        break;
+      case "unit-of-angle":
+        changeInUnitOfAngle();
+        break;
+      case "e-sq-x":
+        stringPreAdder(simpleCalString, "e**");
+        break;
       case "second-fn-trigno":
+        if (flagForHypBtn) {
+          break;
+        }
         const btnsOfTrigno = document.getElementsByClassName("trigno-btn");
         changeButtonColor(e);
         secondBtnShow(btnsOfTrigno);
+        flagForToggleBtn == false
+          ? (flagForToggleBtn = true)
+          : (flagForToggleBtn = false);
         break;
       case "second-fn-trigno-h":
-        const btnOfHTrigno = document.getElementsByClassName("trigno-h-btn");
-        changeButtonColor(e);
-        secondBtnShow(btnOfHTrigno);
+        if (flagForToggleBtn) {
+          const btnOfHTrignoInverse =
+            document.getElementsByClassName("trigno-h-inv");
+          changeButtonColor(e);
+          secondBtnShow(btnOfHTrignoInverse);
+        } else {
+          const btnOfHTrigno = document.getElementsByClassName("trigno-h-btn");
+          changeButtonColor(e);
+          secondBtnShow(btnOfHTrigno);
+        }
+        flagForHypBtn == false
+          ? (flagForHypBtn = true)
+          : (flagForHypBtn = false);
         break;
       case "second-fn":
         const allBtnForToggle =
@@ -119,12 +166,18 @@ function changeButtonColor(e) {
     : e.target.classList.add("btn-blue");
 }
 
-function secondBtnShow(allBtnForToggle) {
+function secondBtnShow(
+  allBtnForToggle,
+  classOne = "d-inline",
+  classTwo = "d-none"
+) {
   Array.from(allBtnForToggle).map(visibleBtn => {
     //visibleBtn ==> element from DOMTokenList
-    visibleBtn.classList.contains("d-inline")
-      ? visibleBtn.classList.toggle("d-none")
-      : visibleBtn.classList.toggle("d-none");
+    if (visibleBtn.classList.contains(classOne)) {
+      visibleBtn.classList.toggle(classTwo);
+    } else {
+      visibleBtn.classList.toggle(classTwo);
+    }
   });
 }
 
@@ -153,7 +206,8 @@ function stringPreAdder(string, addString) {
 }
 
 function absCal(string) {
-  simpleCalString = Math.abs(string);
+  console.log(string, "=====string from abs=========");
+  simpleCalString = Math.abs(simpleCalString);
   setCharAtInputField(simpleCalString);
 }
 
@@ -175,11 +229,11 @@ function stringCalHandler(str) {
       return;
     }
     simpleCalString = eval(str);
+    setCharAtInputField(simpleCalString);
+    console.log(simpleCalString, "after the eval of the fn");
   } catch (err) {
     showErrForSomeTime("Invalid Input!");
-    return;
   }
-  setCharAtInputField(simpleCalString);
 }
 
 function logCal(str, base) {
@@ -210,11 +264,50 @@ function customRootCal(str) {
   setCharAtInputField(simpleCalString);
 }
 
+function randomNumberGenerator() {
+  const randomNumber = Math.floor(Math.random() * simpleCalString);
+  simpleCalString = randomNumber;
+  setCharAtInputField(simpleCalString);
+}
+
+function floorNumberCal() {
+  const newRoundOfNumber = Math.floor(simpleCalString);
+  simpleCalString = newRoundOfNumber;
+  setCharAtInputField(newRoundOfNumber);
+}
+
+function celiNumberCal() {
+  const newCeliNumber = Math.ceil(simpleCalString);
+  simpleCalString = newCeliNumber;
+  setCharAtInputField(newCeliNumber);
+}
+
+function changeInUnitOfAngle() {
+  if (unitOfAngle.degree == true) {
+    unitOfAngle.radian = true;
+    unitOfAngle.degree = false;
+    changeTheUnitInHtml("RAD");
+  } else if (unitOfAngle.radian == true) {
+    unitOfAngle.grad = true;
+    unitOfAngle.radian = false;
+    changeTheUnitInHtml("GRAD");
+  } else if (unitOfAngle.grad == true) {
+    unitOfAngle.degree = true;
+    unitOfAngle.grad = false;
+    changeTheUnitInHtml("DEG");
+  }
+}
+
+function changeTheUnitInHtml(string) {
+  const unitOfAngleBtn = document.getElementById("unit-of-angle");
+  unitOfAngleBtn.innerHTML = string;
+}
+
 //fn to set the string in the input field
 function setCharAtInputField(string) {
-  if (string == undefined) {
-    inputField.value = "";
-    return;
-  }
+  // if (string == undefined) {
+  //   inputField.value = "";
+  //   return;
+  // }
   inputField.value = string;
 }
