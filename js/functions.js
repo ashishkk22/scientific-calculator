@@ -27,6 +27,7 @@ function stringCalHandler(str) {
       customRootCal(str);
       return;
     } else if (str.includes("log")) {
+      console.log(str, "from the log cal call");
       logCal(str, "10");
       return;
     } else if (str.includes("ln")) {
@@ -47,7 +48,7 @@ function absCal(string) {
   string = Math.abs(string);
   if (isNaN(string)) {
     showErrForSomeTime();
-    string = "";
+    return;
   }
   setCharAtInputField(string);
 }
@@ -55,15 +56,23 @@ function absCal(string) {
 //diff. square and root combination fn logic
 function powerAndRootCal(string, factor = 1, power = 1) {
   let result = Math.pow(string, power / factor);
+  if (isNaN(result)) {
+    showErrForSomeTime();
+    return;
+  }
   setCharAtInputField(result);
 }
 
 //log cal fn with diff. bases logic
 function logCal(str, base) {
   let result = "";
-  if (str.indexOf("g") != -1) {
+  if (str.indexOf("g") != -1 && str.includes("(") == -1) {
     result =
       Math.log(str.slice(str.indexOf("g") + 1, str.length)) / Math.log(base);
+  } else if (str.includes("(") && str.includes("(")) {
+    const customBase = str.slice(str.indexOf("(") + 1, str.indexOf(")"));
+    const value = str.slice(str.indexOf("g") + 1, str.indexOf("("));
+    result = Math.log(value) / Math.log(customBase);
   } else {
     result =
       Math.log(str.slice(str.indexOf("n") + 1, str.length)) / Math.log(base);
@@ -93,8 +102,40 @@ function removeCharFromCal(string) {
 
 //append the string at start
 function stringPreAdder(string, addString) {
+  string == undefined ? (string = "") : (string = string);
   string = addString + string;
   setCharAtInputField(string);
+}
+
+let trignoOperations = [
+  "sin",
+  "sin-h",
+  "sin-in",
+  "sin-h-in",
+  "cos",
+  "cos-h",
+  "cos-in",
+  "cos-h-in",
+  "tan",
+  "tan-h",
+  "tan-in",
+  "tan-h-in",
+  "sec",
+  "sec-h",
+  "sec-in",
+  "sec-h-in",
+  "csc",
+  "csc-h",
+  "csc-in",
+  "csc-h-in",
+  "cot",
+  "cot-h",
+  "cot-in",
+  "cot-h-in",
+];
+//is trigno
+function isTrignoCal(itemId) {
+  console.log(itemId);
 }
 
 //error handling function
@@ -124,12 +165,20 @@ function randomNumberGenerator(string) {
 //cal floorN from input
 function floorNumberCal(string) {
   const newRoundOfNumber = Math.floor(string);
+  if (isNaN(newRoundOfNumber)) {
+    showErrForSomeTime();
+    return;
+  }
   setCharAtInputField(newRoundOfNumber);
 }
 
 //cal celiN from input
 function celiNumberCal(string) {
   const newCeliNumber = Math.ceil(string);
+  if (isNaN(newCeliNumber)) {
+    showErrForSomeTime();
+    return;
+  }
   setCharAtInputField(newCeliNumber);
 }
 

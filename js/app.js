@@ -158,6 +158,7 @@ function btnClickHandler(e) {
         secondBtnShow(allBtnForToggle);
         break;
       default:
+        isTrignoCal(clickedItem);
         break;
     }
   }
