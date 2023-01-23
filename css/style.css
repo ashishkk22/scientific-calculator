@@ -23,10 +23,23 @@
     height: 3rem;
     color: black;
     border-radius: 0;
-    margin: 0rem 0.2rem;
+    margin: 0rem 0.1rem;
 }
 .btn:hover{
     background-color: rgba(131, 131, 131, 0.35);
+    transition: 0.5s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 5px;
+}
+.btn-dropdown{
+    background-color: white;
+    width: 100%;
+    margin:0rem 0.2rem;
+    height: 2.5rem;
+    color: black;
+}
+.btn-dropdown:hover{
+    background-color: rgba(131, 131, 131, 0.35);
+    color:black;
     transition: 0.5s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 5px;
 }
@@ -37,7 +50,7 @@
     width: 1.5rem;
 }
 .btn-blue{
-    background-color: #6690ce;
+    background-color: #6690ce !important;
 }
 .btn-blue:hover{
     background-color: #4b6da0;
@@ -50,4 +63,26 @@
     outline: none;
     border: none;
     background-color: #f8f9fa;
+}
+.trigono-img{
+    transform: rotate(270deg);
+    width: 1.1rem;
+
+}
+.fn-img{
+    width: 1.2rem;
+}
+.btn-small{
+     background-color: white;
+    width: 4rem;
+    height: 2.8rem;
+    color: black;
+    border-radius: 0;
+    margin: 0.2rem 0.2rem;
+    white-space: nowrap;
+}
+.btn-small:hover{
+    background-color: rgba(131, 131, 131, 0.35);
+    transition: 0.5s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 5px;
 }

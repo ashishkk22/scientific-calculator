@@ -23,7 +23,7 @@
         class="center-container bg-light d-flex justify-content-center"
         id="calculator-div"
       >
-        <div>Calculator</div>
+        <div>Scientific Calculator</div>
         <div>
           <input
             type="text"
@@ -35,7 +35,7 @@
           />
           <p class="text-center" id="error-div"></p>
         </div>
-        <div class="d-flex flex-row justify-content-start">
+        <div class="d-flex flex-row justify-content-start ms-1">
           <button class="btn border-none p-1 bg-transparent">
             <div>DEG</div>
           </button>
@@ -50,16 +50,115 @@
           <button class="btn bg-transparent"><b>M-</b></button>
           <button class="btn bg-transparent"><b>MS</b></button>
         </div>
-        <div
-          class="d-flex flex-row justify-content-start gap-4 align-items-center mt-3 ms-2"
-        >
-          <p>Trigonometry</p>
-          <p>function</p>
+        <div class="d-flex flex-row justify-content-start align-items-center">
+          <div class="dropdown border-0">
+            <button
+              class="btn dropdown-toggle btn-dropdown border-0 bg-transparent"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              data-bs-auto-close="outside"
+              aria-expanded="false"
+            >
+              <span>
+                <img
+                  src="./images/triangle.png"
+                  alt="triangle"
+                  class="trigono-img mb-1 me-1"
+              /></span>
+              <span>Trigonometry</span>
+            </button>
+            <ul
+              class="dropdown-menu p-0 bg-light"
+              aria-labelledby="dropdownMenuButton1"
+            >
+              <div class="d-flex flex-row">
+                <button class="btn btn-small" id="second-fn-trigno">
+                  2 <sup>nd</sup>
+                </button>
+                <button class="btn btn-small d-inline trigno-btn" id="abs">
+                  sin
+                </button>
+                <button class="btn btn-small d-none trigno-btn" id="abs">
+                  sin <sup>-1</sup>
+                </button>
+                <button class="btn btn-small d-none trigno-h-btn" id="abs">
+                  sinh
+                </button>
+                <button class="btn btn-small d-inline trigno-btn">cos</button>
+                <button class="btn btn-small d-none trigno-btn">
+                  cos <sup>-1</sup>
+                </button>
+                <button class="btn btn-small d-none trigno-h-btn">cosh</button>
+                <button class="btn btn-small d-inline trigno-btn">tan</button>
+                <button class="btn btn-small d-none trigno-btn">
+                  tan <sup>-1</sup>
+                </button>
+                <button class="btn btn-small d-none trigno-h-btn">tanh</button>
+              </div>
+              <div class="d-flex flex-row">
+                <button class="btn btn-small" id="second-fn-trigno-h">
+                  hyp
+                </button>
+                <button class="btn btn-small d-inline trigno-btn" id="abs">
+                  sec
+                </button>
+                <button class="btn btn-small d-none trigno-btn" id="abs">
+                  sec <sup>-1</sup>
+                </button>
+                <button class="btn btn-small d-none trigno-h-btn" id="abs">
+                  sech
+                </button>
+                <button class="btn btn-small d-inline trigno-btn">csc</button>
+                <button class="btn btn-small d-none trigno-btn">
+                  csc <sup>-1</sup>
+                </button>
+                <button class="btn btn-small d-none trigno-h-btn">csch</button>
+                <button class="btn btn-small d-inline trigno-btn">cot</button>
+                <button class="btn btn-small d-none trigno-btn">
+                  cot <sup>-1</sup>
+                </button>
+                <button class="btn btn-small d-none trigno-h-btn">coth</button>
+              </div>
+            </ul>
+          </div>
+          <div class="dropdown">
+            <button
+              class="btn dropdown-toggle btn-dropdown border-0 bg-transparent"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span
+                ><img
+                  src="./images/function-f.png"
+                  alt="function-f"
+                  class="fn-img"
+              /></span>
+              <span>Function</span>
+            </button>
+            <ul
+              class="dropdown-menu p-0 bg-light"
+              aria-labelledby="dropdownMenuButton1"
+            >
+              <div class="d-flex flex-row">
+                <button class="btn btn-small" id="1/x">1/x</button>
+                <button class="btn btn-small" id="abs">|x|</button>
+                <button class="btn btn-small">exp</button>
+              </div>
+              <div class="d-flex flex-row">
+                <button class="btn btn-small" id="1/x">1/x</button>
+                <button class="btn btn-small" id="abs">|x|</button>
+                <button class="btn btn-small">exp</button>
+              </div>
+            </ul>
+          </div>
         </div>
         <div
           class="d-flex flex-row justify-content-center align-items-center mt-1"
         >
-          <button class="btn" id="second-fn-trigger">2 <sup>nd</sup></button>
+          <button class="btn" id="second-fn">2 <sup>nd</sup></button>
           <button class="btn" id="π">π</button>
           <button class="btn" id="e">e</button>
           <button class="btn" id="reset-char">C</button>

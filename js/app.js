@@ -1,4 +1,5 @@
 let simpleCalString = "";
+//factorial method on Number
 Number.prototype.factorial = function () {
   return this > 0 ? this * (this - 1).factorial() : 1; //factorial logic
 };
@@ -33,9 +34,6 @@ const array = [
 ];
 const inputField = document.querySelector("input");
 const mainElementForEvents = document.querySelector("#calculator-div");
-// const secondOptionBtn = document.getElementById("#second-fn-trigger");
-
-// secondOptionBtn.addEventListener('click', () => {});
 
 //only one main event listener for all the btn (event delegation)
 mainElementForEvents.addEventListener("click", btnClickHandler);
@@ -47,7 +45,6 @@ function btnClickHandler(e) {
     console.log(simpleCalString);
     var clickedItem = e.target.id;
     console.log(clickedItem);
-    console.log(simpleCalString, "sstrign");
     switch (clickedItem) {
       case isOperationPresent(clickedItem):
         simpleCalculation(clickedItem);
@@ -80,8 +77,21 @@ function btnClickHandler(e) {
       case "abs":
         absCal(simpleCalString);
         break;
-      case "second-fn-trigger":
-        secondBtnTriggerForToggle();
+      case "second-fn-trigno":
+        const btnsOfTrigno = document.getElementsByClassName("trigno-btn");
+        changeButtonColor(e);
+        secondBtnShow(btnsOfTrigno);
+        break;
+      case "second-fn-trigno-h":
+        const btnOfHTrigno = document.getElementsByClassName("trigno-h-btn");
+        changeButtonColor(e);
+        secondBtnShow(btnOfHTrigno);
+        break;
+      case "second-fn":
+        const allBtnForToggle =
+          document.getElementsByClassName("2nd-toggle-btn");
+        changeButtonColor(e);
+        secondBtnShow(allBtnForToggle);
         break;
       default:
         break;
@@ -89,18 +99,8 @@ function btnClickHandler(e) {
   }
 }
 
-Number.prototype.factorial = function () {
-  console.log(this);
-  return this > 0 ? this * (this - 1).factorial() : 1; //factorial logic
-};
-
 function isOperationPresent(clickedItem) {
-  if (array.includes(clickedItem)) {
-    console.log(clickedItem, "from operation present");
-    return clickedItem;
-  } else {
-    return "#";
-  }
+  return array.includes(clickedItem) ? clickedItem : "#";
 }
 
 function calculationOfSimpleCal() {
@@ -113,27 +113,30 @@ function simpleCalculation(string) {
   setCharAtInputField(simpleCalString);
 }
 
-function secondBtnTriggerForToggle() {
-  const allBtnForToggle = document.getElementsByClassName("2nd-toggle-btn");
+function changeButtonColor(e) {
+  e.target.classList.contains("btn-blue")
+    ? e.target.classList.remove("btn-blue")
+    : e.target.classList.add("btn-blue");
+}
+
+function secondBtnShow(allBtnForToggle) {
   Array.from(allBtnForToggle).map(visibleBtn => {
-    //visibleBtn ==> DOMTokenList
-    if (visibleBtn.classList.contains("d-inline")) {
-      visibleBtn.classList.toggle("d-none");
-    } else {
-      visibleBtn.classList.toggle("d-none");
-    }
+    //visibleBtn ==> element from DOMTokenList
+    visibleBtn.classList.contains("d-inline")
+      ? visibleBtn.classList.toggle("d-none")
+      : visibleBtn.classList.toggle("d-none");
   });
 }
 
 function showErrForSomeTime(string) {
-  document.getElementById("error-div").innerHTML = string;
+  document.getElementById("error-div").innerHTML = "Invalid Input!";
   setTimeout(() => {
     document.getElementById("error-div").innerHTML = "";
   }, 5000);
 }
 
 function removeCharFromCal(string) {
-  string = string.substring(0, string.length - 1);
+  string = string?.substring(0, string.length - 1);
   simpleCalString = string;
   setCharAtInputField(simpleCalString);
 }
@@ -160,28 +163,29 @@ function stringCalHandler(str) {
     str = str?.replaceAll("!", '["factorial"]()');
     str = str?.replaceAll("e", "2.7182");
     str = str?.replaceAll("π", "3.14");
-    if (str.includes("rt")) {
+    if (str?.includes("rt")) {
       customRootCal(str);
       return;
     } else if (str.includes("log")) {
-      logCal(str);
+      logCal(str, "10");
       return;
     } else if (str.includes("ln")) {
+      console.log(str, "for the ln calculation");
       logCal(str, "2.7182");
       return;
     }
-    console.log(str, "stringCalHandler");
     simpleCalString = eval(str);
   } catch (err) {
-    showErrForSomeTime(err);
+    showErrForSomeTime("Invalid Input!");
     return;
   }
   setCharAtInputField(simpleCalString);
 }
 
-function logCal(str, base = 10) {
+function logCal(str, base) {
+  console.log(str);
   let result = "";
-  if ((base = 10)) {
+  if (str.indexOf("g") != -1) {
     result =
       Math.log(str.slice(str.indexOf("g") + 1, str.length)) / Math.log(base);
   } else {
@@ -201,7 +205,8 @@ function customRootCal(str) {
   } catch (error) {
     showErrForSomeTime(error);
   }
-  if (isNaN(result)) showErrForSomeTime("Please enter valid operation");
+  if (isNaN(result)) showErrForSomeTime("Invalid Input!");
+  simpleCalString = result;
   setCharAtInputField(simpleCalString);
 }
 
