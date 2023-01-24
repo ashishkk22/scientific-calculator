@@ -25,25 +25,26 @@
       >
         <div>Scientific Calculator</div>
         <div>
-          <input
+          <textarea
             type="text"
             class="form-control shadow-none"
             aria-label="Username"
             aria-describedby="basic-addon1"
             id="input-field"
+            wrap="soft"
+            maxlength="40"
             readonly
-          />
+          >
+          </textarea>
           <p class="text-center" id="error-div"></p>
         </div>
-        <div class="d-flex flex-row justify-content-start ms-1">
+        <div class="d-flex justify-content-start ms-1">
           <button class="btn border-none p-1 bg-transparent" id="unit-of-angle">
             DEG
           </button>
           <button class="btn bg-transparent">F-E</button>
         </div>
-        <div
-          class="d-flex flex-row justify-content-center align-items-center mt-2"
-        >
+        <div class="d-flex justify-content-center align-items-center mt-2">
           <button class="btn bg-transparent"><b>MC</b></button>
           <button class="btn bg-transparent"><b>MR</b></button>
           <button class="btn bg-transparent"><b>M+</b></button>
@@ -51,7 +52,7 @@
           <button class="btn bg-transparent"><b>MS</b></button>
           <button class="btn bg-transparent"><b>M</b></button>
         </div>
-        <div class="d-flex flex-row justify-content-start align-items-center">
+        <div class="d-flex justify-content-start align-items-center">
           <div class="dropdown border-0">
             <button
               class="btn dropdown-toggle btn-dropdown border-0 bg-transparent"
@@ -73,7 +74,7 @@
               class="dropdown-menu p-0 bg-light"
               aria-labelledby="dropdownMenuButton1"
             >
-              <div class="d-flex flex-row">
+              <div class="d-flex">
                 <button class="btn btn-small" id="second-fn-trigno">
                   2 <sup>nd</sup>
                 </button>
@@ -132,7 +133,7 @@
                   tanh
                 </button>
               </div>
-              <div class="d-flex flex-row">
+              <div class="d-flex">
                 <button class="btn btn-small" id="second-fn-trigno-h">
                   hyp
                 </button>
@@ -213,7 +214,7 @@
               class="dropdown-menu p-0 bg-light"
               aria-labelledby="dropdownMenuButton1"
             >
-              <div class="d-flex flex-row">
+              <div class="d-flex">
                 <button class="btn btn-small" id="abs">
                   &#x23A2;x &#x23A2;
                 </button>
@@ -224,7 +225,7 @@
                   &#x23A1;x&#x23A4;
                 </button>
               </div>
-              <div class="d-flex flex-row">
+              <div class="d-flex">
                 <button class="btn btn-small" id="random-num">rand</button>
                 <button class="btn btn-small" id="abs">&#x21FE; dms</button>
                 <button class="btn btn-small text-center">&#x21FE; deg</button>
@@ -232,9 +233,7 @@
             </ul>
           </div>
         </div>
-        <div
-          class="d-flex flex-row justify-content-center align-items-center mt-1"
-        >
+        <div class="d-flex justify-content-center align-items-center mt-1">
           <button class="btn" id="second-fn">2 <sup>nd</sup></button>
           <button class="btn" id="π">π</button>
           <button class="btn" id="e">e</button>
@@ -248,9 +247,7 @@
             />
           </button>
         </div>
-        <div
-          class="d-flex flex-row justify-content-center align-items-center mt-1"
-        >
+        <div class="d-flex justify-content-center align-items-center mt-1">
           <button class="btn d-inline 2nd-toggle-btn" id="**2">
             x<sup>2</sup>
           </button>
@@ -259,12 +256,10 @@
           </button>
           <button class="btn" id="1/x">1/x</button>
           <button class="btn" id="abs">&#x23A2;x &#x23A2;</button>
-          <button class="btn">exp</button>
+          <button class="btn" id="e**">exp</button>
           <button class="btn" id="%">mod</button>
         </div>
-        <div
-          class="d-flex flex-row justify-content-center align-items-center mt-1"
-        >
+        <div class="d-flex justify-content-center align-items-center mt-1">
           <button class="btn d-inline 2nd-toggle-btn" id="sqrt">
             2&#8730;x
           </button>
@@ -274,9 +269,7 @@
           <button class="btn" id="!">n!</button>
           <button class="btn fs-4" id="/">÷</button>
         </div>
-        <div
-          class="d-flex flex-row justify-content-center align-items-center mt-1"
-        >
+        <div class="d-flex justify-content-center align-items-center mt-1">
           <button class="btn d-inline 2nd-toggle-btn" id="**">
             x<sup>y</sup>
           </button>
@@ -286,9 +279,7 @@
           <button class="btn fw-bold" id="9">9</button>
           <button class="btn fs-6" id="*">X</button>
         </div>
-        <div
-          class="d-flex flex-row justify-content-center align-items-center mt-1"
-        >
+        <div class="d-flex justify-content-center align-items-center mt-1">
           <button class="btn d-inline 2nd-toggle-btn" id="10sq">
             10<sup>x</sup>
           </button>
@@ -300,9 +291,7 @@
           <button class="btn fw-bold" id="6">6</button>
           <button class="btn fw-bold fs-4" id="-">-</button>
         </div>
-        <div
-          class="d-flex flex-row justify-content-center align-items-center mt-1"
-        >
+        <div class="d-flex justify-content-center align-items-center mt-1">
           <button class="btn d-inline 2nd-toggle-btn" id="log">log</button>
           <button class="btn d-none 2nd-toggle-btn" id="log">
             log <sub>y</sub>x
@@ -312,9 +301,7 @@
           <button class="btn fw-bold" id="3">3</button>
           <button class="btn fs-4" id="+">+</button>
         </div>
-        <div
-          class="d-flex flex-row justify-content-center align-items-center mt-1"
-        >
+        <div class="d-flex justify-content-center align-items-center mt-1">
           <button class="btn d-inline 2nd-toggle-btn" id="ln">ln</button>
           <button class="btn d-none 2nd-toggle-btn" id="e-sq-x">
             e <sup>x</sup>

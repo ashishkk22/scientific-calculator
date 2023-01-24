@@ -6,7 +6,7 @@ function isOperationPresent(clickedItem) {
 //fn that is going to just add the operation in the string
 function simpleCalculation(value) {
   let string = getValueFromLocal("calString");
-  if (string == undefined) string = "";
+  if (string === undefined) string = "";
   string += value;
   setCharAtInputField(string);
 }
@@ -19,7 +19,6 @@ function calculationOfSimpleCal(stringFromLocalStorage) {
 //main fn to handle the all cal logics
 function stringCalHandler(str) {
   try {
-    console.log(str, "from string cal handler");
     str = str?.replaceAll("!", '["factorial"]()');
     str = str?.replaceAll("e", "2.7182");
     str = str?.replaceAll("π", "3.14");
@@ -27,17 +26,14 @@ function stringCalHandler(str) {
       customRootCal(str);
       return;
     } else if (str.includes("log")) {
-      console.log(str, "from the log cal call");
       logCal(str, "10");
       return;
     } else if (str.includes("ln")) {
-      console.log(str, "for the ln calculation");
       logCal(str, "2.7182");
       return;
     }
     str = eval(str);
     setCharAtInputField(str);
-    console.log(str, "after the eval of the fn");
   } catch (err) {
     showErrForSomeTime("Invalid Input!");
   }
@@ -66,7 +62,7 @@ function powerAndRootCal(string, factor = 1, power = 1) {
 //log cal fn with diff. bases logic
 function logCal(str, base) {
   let result = "";
-  if (str.indexOf("g") != -1 && str.includes("(") == -1) {
+  if (str.indexOf("g") !== -1 && str.includes("(") === -1) {
     result =
       Math.log(str.slice(str.indexOf("g") + 1, str.length)) / Math.log(base);
   } else if (str.includes("(") && str.includes("(")) {
@@ -107,6 +103,7 @@ function stringPreAdder(string, addString) {
   setCharAtInputField(string);
 }
 
+//all trigonometry operation's array
 let trignoOperations = [
   "sin",
   "sin-h",
@@ -133,14 +130,222 @@ let trignoOperations = [
   "cot-in",
   "cot-h-in",
 ];
-//is trigno
-function isTrignoCal(itemId) {
-  console.log(itemId);
+
+//operation is trigno or not
+function isTrignoCal(clickedItem) {
+  trignoOperations.includes(clickedItem)
+    ? trignoOperationHandler(clickedItem)
+    : "";
+}
+
+//to handle all the trigonometry operations
+function trignoOperationHandler(clickedItem) {
+  let value = getValueFromLocal("calString");
+  if (unitOfAngle.degree === true) {
+    //converting degree to radian
+    value = (value * Math.PI) / 180;
+  } else if (unitOfAngle.grad === true) {
+    //1 Gradians to Radians = 0.0157
+    value = value * 0.0157;
+  }
+  if (isNaN(value)) {
+    showErrForSomeTime();
+    return;
+  }
+  if (clickedItem.includes("sin")) {
+    sinTrignoOperations(clickedItem, value);
+  } else if (clickedItem.includes("cos")) {
+    cosTrignoOperations(clickedItem, value);
+  } else if (clickedItem.includes("tan")) {
+    tanTrignoOperations(clickedItem, value);
+  } else if (clickedItem.includes("csc")) {
+    cscTrignoOperations(clickedItem, value);
+  } else if (clickedItem.includes("sec")) {
+    secTrignoOperations(clickedItem, value);
+  } else if (clickedItem.includes("cot")) {
+    cotTrignoOperations(clickedItem, value);
+  }
+}
+
+// let combinedFn = {
+//   "sin":Math.sin(),
+//   "cos":Math.cos(),
+// }
+
+//to handle all the sin operations
+function sinTrignoOperations(clickedItem, value) {
+  switch (clickedItem) {
+    case "sin":
+      value = Math.sin(value);
+      break;
+    case "sin-in":
+      if (value <= 1 && value >= -1) {
+        value = Math.asin(value);
+        setCharAtInputField(value);
+      } else {
+        showErrForSomeTime("Please enter the input from -1 to 1 (RAD)");
+        return;
+      }
+    case "sin-h":
+      value = Math.sinh(value);
+      break;
+    case "sin-h-in":
+      value = Math.asinh(value);
+      break;
+  }
+  if (isNaN(value)) {
+    showErrForSomeTime();
+    return;
+  }
+  setCharAtInputField(value);
+}
+
+//to handle all the cos operations
+function cosTrignoOperations(clickedItem, value) {
+  switch (clickedItem) {
+    case "cos":
+      value = Math.cos(value);
+      break;
+    case "cos-in":
+      if (value <= 1 && value >= -1) {
+        value = Math.acos(value);
+        setCharAtInputField(value);
+      } else {
+        showErrForSomeTime("Please enter the input from -1 to 1 (RAD)");
+        return;
+      }
+      break;
+    case "cos-h":
+      value = Math.cosh(value);
+      break;
+    case "cos-h-in":
+      value = Math.acosh(value);
+      break;
+  }
+  if (isNaN(value)) {
+    showErrForSomeTime();
+    return;
+  }
+  setCharAtInputField(value);
+}
+
+//to handle all the tan operations
+function tanTrignoOperations(clickedItem, value) {
+  switch (clickedItem) {
+    case "tan":
+      value = Math.tan(value);
+      break;
+    case "tan-in":
+      value = Math.atan(value);
+      break;
+    case "tan-h":
+      value = Math.tanh(value);
+      break;
+    case "tan-h-in":
+      if (value <= 1 && value >= -1) {
+        value = Math.atanh(value);
+      } else {
+        showErrForSomeTime("Please enter the input from -1 to 1 (RAD)");
+        return;
+      }
+      break;
+  }
+  if (isNaN(value)) {
+    showErrForSomeTime();
+    return;
+  }
+  setCharAtInputField(value);
+}
+
+//to handle all the cosec operation
+function cscTrignoOperations(clickedItem, value) {
+  switch (clickedItem) {
+    case "csc":
+      value = 1 / Math.sin(value);
+      break;
+    case "csc-in":
+      if (value <= 1 && value >= -1) {
+        value = 1 / Math.asin(value);
+        setCharAtInputField(value);
+      } else {
+        showErrForSomeTime("Please enter the input from -1 to 1 (RAD)");
+        return;
+      }
+    case "csc-h":
+      value = 1 / Math.sinh(value);
+      break;
+    case "csc-h-in":
+      value = 1 / Math.asinh(value);
+      break;
+  }
+  if (isNaN(value)) {
+    showErrForSomeTime();
+    return;
+  }
+  setCharAtInputField(value);
+}
+
+//to handle all the sec operations
+function secTrignoOperations(clickedItem, value) {
+  switch (clickedItem) {
+    case "sec":
+      value = 1 / Math.cos(value);
+      break;
+    case "sec-in":
+      if (value <= 1 && value >= -1) {
+        value = 1 / Math.acos(value);
+        setCharAtInputField(value);
+      } else {
+        showErrForSomeTime("Please enter the input from -1 to 1 (RAD)");
+        return;
+      }
+      break;
+    case "sec-h":
+      value = 1 / Math.cosh(value);
+      break;
+    case "sec-h-in":
+      value = 1 / Math.acosh(value);
+      break;
+  }
+  if (isNaN(value)) {
+    showErrForSomeTime();
+    return;
+  }
+  setCharAtInputField(value);
+}
+
+//to handle all the cot operations
+function cotTrignoOperations(clickedItem, value) {
+  switch (clickedItem) {
+    case "cot":
+      value = 1 / Math.tan(value);
+      break;
+    case "cot-in":
+      value = 1 / Math.atan(value);
+      break;
+    case "cot-h":
+      value = 1 / Math.tanh(value);
+      break;
+    case "cot-h-in":
+      if (value <= 1 && value >= -1) {
+        value = 1 / Math.atanh(value);
+      } else {
+        showErrForSomeTime("Please enter the input from -1 to 1 (RAD)");
+        return;
+      }
+      break;
+  }
+  if (isNaN(value)) {
+    showErrForSomeTime();
+    return;
+  }
+  setCharAtInputField(value);
 }
 
 //error handling function
 function showErrForSomeTime(string) {
-  document.getElementById("error-div").innerHTML = "Invalid Input!";
+  string !== undefined ? string : (string = "Invalid Input!");
+  document.getElementById("error-div").innerHTML = string;
   setTimeout(() => {
     document.getElementById("error-div").innerHTML = "";
   }, 5000);
@@ -148,7 +353,7 @@ function showErrForSomeTime(string) {
 
 //fn to set the string in the input field
 function setCharAtInputField(string) {
-  if (string == undefined) {
+  if (string === undefined) {
     inputField.value = "";
     return;
   }
@@ -209,15 +414,15 @@ function secondBtnShow(
 
 //unit changing in the cal with clicks logic
 function changeInUnitOfAngle() {
-  if (unitOfAngle.degree == true) {
+  if (unitOfAngle.degree === true) {
     unitOfAngle.radian = true;
     unitOfAngle.degree = false;
     changeTheUnitInHtml("RAD");
-  } else if (unitOfAngle.radian == true) {
+  } else if (unitOfAngle.radian === true) {
     unitOfAngle.grad = true;
     unitOfAngle.radian = false;
     changeTheUnitInHtml("GRAD");
-  } else if (unitOfAngle.grad == true) {
+  } else if (unitOfAngle.grad === true) {
     unitOfAngle.degree = true;
     unitOfAngle.grad = false;
     changeTheUnitInHtml("DEG");

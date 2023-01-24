@@ -28,6 +28,10 @@
 // btn.addEventListeners("click",()=>{
 
 // })
-
+const value = 1.5707963267948966;
 const result = eval("(2+2)*2");
-console.log(result);
+const res = Math.sin(1.5707963267948966);
+const res2 = Math.tan(1.5707963267948966);
+const res3 = Math.sin(90) / Math.cos(90);
+console.log(res3);
+//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;

@@ -16,6 +16,7 @@ function setValueInLocal(key, value) {
   localStorage.setItem(key, value);
 }
 
+//get the values from the local storage
 function getValueFromLocal(key) {
   if (!localStorage.getItem(key)) {
     setValueInLocal(key, "");
@@ -58,12 +59,13 @@ const array = [
   "π",
   "log",
   "ln",
+  "e**",
 ];
 
-const inputField = document.querySelector("input");
+const inputField = document.querySelector("textarea");
 
 //set initial value in the input field empty or existing
-getValueFromLocal("calString") == undefined
+getValueFromLocal("calString") === undefined
   ? inputField.value
   : (inputField.value = getValueFromLocal("calString"));
 const mainElementForEvents = document.querySelector("#calculator-div");
@@ -125,6 +127,9 @@ function btnClickHandler(e) {
       case "e-sq-x":
         stringPreAdder(stringFromLocalStorage, "e**");
         break;
+      case "e**":
+        stringPreAdder(stringFromLocalStorage, "e**");
+        break;
       case "second-fn-trigno":
         if (flagForHypBtn) {
           break;
@@ -132,7 +137,7 @@ function btnClickHandler(e) {
         const btnsOfTrigno = document.getElementsByClassName("trigno-btn");
         changeButtonColor(e);
         secondBtnShow(btnsOfTrigno);
-        flagForToggleBtn == false
+        flagForToggleBtn === false
           ? (flagForToggleBtn = true)
           : (flagForToggleBtn = false);
         break;
@@ -147,7 +152,7 @@ function btnClickHandler(e) {
           changeButtonColor(e);
           secondBtnShow(btnOfHTrigno);
         }
-        flagForHypBtn == false
+        flagForHypBtn === false
           ? (flagForHypBtn = true)
           : (flagForHypBtn = false);
         break;
