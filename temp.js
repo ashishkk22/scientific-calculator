@@ -1,37 +1,18 @@
-// const cal = "10!";
+// str.replace("ak","22") //first match
+// str.replaceAll("ak","22") //replace all the match
 
-// const result = eval(cal);
-// console.log(result);
-
-// Number.prototype.factorial = function () {
-//   return this > 0 ? this * (this - 1).factorial() : 1; //factorial logic
+// const obj = {
+//   1: "ak",
+//   22: "function",
+//   3: "ss",
+//   4: "boy",
 // };
+// console.log(obj);
 
-// function evaluate(str) {
-//   str = str.replaceAll("!", '["factorial"]()');
-//   //   console.log(str); // Just to see what it generates
-//   return eval(str);
-// }
+const myDate = new Date();
+let object = myDate;
 
-// console.log(evaluate("1 + (2*3)!")); // 721
-// console.log(evaluate("3!!-1")); // 619
-// console.log(evaluate("(2-2)!*3")); // 3
-// console.log(evaluate("'abc'.length!")); // 6
-
-// const cal = "log10";
-// // const result = eval(cal);
-// // const result2 = Math.pow(27, 1 / 3);
-// const result3 = eval("27**(1/3)");
-// console.log(result3);
-
-// const btn = document.getElementsByClassName("btn");
-// btn.addEventListeners("click",()=>{
-
-// })
-const value = 1.5707963267948966;
-const result = eval("(2+2)*2");
-const res = Math.sin(1.5707963267948966);
-const res2 = Math.tan(1.5707963267948966);
-const res3 = Math.sin(90) / Math.cos(90);
-console.log(res3);
-//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;
+do {
+  object = Object.getPrototypeOf(object);
+  console.log(object);
+} while (object);

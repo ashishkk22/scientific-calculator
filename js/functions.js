@@ -62,16 +62,20 @@ function powerAndRootCal(string, factor = 1, power = 1) {
 //log cal fn with diff. bases logic
 function logCal(str, base) {
   let result = "";
-  if (str.indexOf("g") !== -1 && str.includes("(") === -1) {
+  if (str.indexOf("g") !== -1 && !str.includes("(")) {
     result =
       Math.log(str.slice(str.indexOf("g") + 1, str.length)) / Math.log(base);
-  } else if (str.includes("(") && str.includes("(")) {
+  } else if (str.includes("(") && str.includes(")")) {
     const customBase = str.slice(str.indexOf("(") + 1, str.indexOf(")"));
     const value = str.slice(str.indexOf("g") + 1, str.indexOf("("));
     result = Math.log(value) / Math.log(customBase);
   } else {
     result =
       Math.log(str.slice(str.indexOf("n") + 1, str.length)) / Math.log(base);
+  }
+  if (isNaN(result)) {
+    showErrForSomeTime();
+    return;
   }
   setCharAtInputField(result);
 }

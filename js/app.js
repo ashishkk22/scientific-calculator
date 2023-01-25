@@ -1,5 +1,3 @@
-let simpleCalString = getValueFromLocal("calString");
-
 //two flags to toggle the btn
 let flagForToggleBtn = false;
 let flagForHypBtn = false;
