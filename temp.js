@@ -16,3 +16,5 @@ do {
   object = Object.getPrototypeOf(object);
   console.log(object);
 } while (object);
+
+console.log(Number.prototype);

@@ -1,13 +1,24 @@
 //two flags to toggle the btn
 let flagForToggleBtn = false;
 let flagForHypBtn = false;
-
 //object to track the unit that changes on click
 let unitOfAngle = {
   degree: true,
   radian: false,
   grad: false,
 };
+
+let box = document.getElementById("calculator-div");
+let rect = box.getBoundingClientRect();
+let drawerContent = document.querySelector(".drawer-content");
+addEventListener("resize", () => {
+  let rect = box.getBoundingClientRect();
+  dynamicStyleDrawer(drawerContent, rect);
+});
+
+let mRecallBtn = document.getElementById("m-recall");
+let mClearBtn = document.getElementById("m-clear");
+buttonVisibilityHandler(mRecallBtn, mClearBtn);
 
 //set and get the data from the local storage
 function setValueInLocal(key, value) {
@@ -60,6 +71,8 @@ const array = [
   "e**",
 ];
 
+let storedNumbers = [];
+
 const inputField = document.querySelector("textarea");
 
 //set initial value in the input field empty or existing
@@ -77,10 +90,48 @@ function btnClickHandler(e) {
 
   if (e.target != e.currentTarget) {
     let stringFromLocalStorage = getValueFromLocal("calString");
+    let storedNumberOutput = getValueFromLocal("storedNum");
+    storedNumberOutput === undefined ? setValueInLocal("storedNum", 0) : 0;
     var clickedItem = e.target.id;
+
+    console.log(clickedItem);
     switch (clickedItem) {
       case isOperationPresent(clickedItem):
         simpleCalculation(clickedItem);
+        break;
+      case "m-plus":
+        addTheValueToMemory();
+        buttonVisibilityHandler(mRecallBtn, mClearBtn);
+        break;
+      case "m-minus":
+        removeTheValueFromMemory();
+        buttonVisibilityHandler(mRecallBtn, mClearBtn);
+        break;
+      case "m-clear":
+        setValueInLocal("storedNum", 0);
+        setValueInLocal("storedNums", "");
+        storedNumbers = [];
+        buttonVisibilityHandler(mRecallBtn, mClearBtn);
+        break;
+      case "m-recall":
+        recallTheValueFromMemory(drawerContent, rect);
+        break;
+      case "m-store":
+        storedNumbers.push(getValueFromLocal("calString"));
+        setValueInLocal("storedNums", storedNumbers);
+        buttonVisibilityHandler(mRecallBtn, mClearBtn);
+        break;
+      case "m-show":
+        dynamicStyleDrawer(drawerContent, rect);
+        drawerShow(drawerContent);
+        showStoredNumbers(drawerContent);
+        break;
+      case "drawer-close":
+        drawerClose(drawerContent);
+        break;
+      case "remove-nums":
+        removeNumbers();
+        buttonVisibilityHandler(mRecallBtn, mClearBtn);
         break;
       case "=":
         calculationOfSimpleCal(stringFromLocalStorage);
@@ -127,6 +178,9 @@ function btnClickHandler(e) {
         break;
       case "e**":
         stringPreAdder(stringFromLocalStorage, "e**");
+        break;
+      case "to-expo":
+        toExponentialConvert();
         break;
       case "second-fn-trigno":
         if (flagForHypBtn) {

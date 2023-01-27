@@ -5,6 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+  scrollbar-width: none; /*for Firefox */
 }
 ::-webkit-scrollbar {
   width: 0;
@@ -85,4 +86,43 @@
 }
 .sort-down-img {
   width: 0.6rem;
+}
+.memory-drawer {
+  position: relative;
+}
+.drawer-content {
+  position: absolute;
+  width: 25rem;
+  height: 26rem;
+  text-align: right;
+  z-index: 1;
+  background-color: #f8f9fa;
+  border: 0.01rem solid rgba(131, 131, 131, 0.35);
+  border-radius: 0.5rem 1rem 0rem 0rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.03rem 0.31rem;
+  display: none;
+}
+.close-btn {
+  background-color: #f8f9fa;
+}
+.close-img {
+  width: 1.2rem;
+}
+.delete-btn {
+  padding: 0.2rem;
+  background-color: #f8f9fa;
+}
+.delete-img {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.delete-btn-div {
+  position: absolute;
+  top: calc(100% - 3.2rem);
+  right: 0.2rem;
+}
+.stored-nums-container {
+  max-height: 75%;
+  overflow: hidden;
+  overflow-y: scroll;
 }

@@ -391,6 +391,63 @@ function celiNumberCal(string) {
   setCharAtInputField(newCeliNumber);
 }
 
+function toExponentialConvert() {
+  let string = getValueFromLocal("calString");
+  let expoNum = Number.parseFloat(string).toExponential();
+  if (isNaN(expoNum)) {
+    showErrForSomeTime("Invalid Input!");
+    return;
+  }
+  // expoNum = expoNum?.replaceAll("e", "*e");
+  setCharAtInputField(expoNum);
+}
+
+//=== stored memory cal fn ===
+function addTheValueToMemory() {
+  let string = getValueFromLocal("calString");
+  if (string === undefined) string = "";
+  let storedNum = getValueFromLocal("storedNum");
+  if (storedNum == undefined) string = "";
+  const value = Number(string) + Number(storedNum);
+  if (isNaN(value)) {
+    showErrForSomeTime("Invalid Input!");
+    return;
+  }
+  setValueInLocal("storedNum", value);
+}
+
+function removeTheValueFromMemory() {
+  let string = getValueFromLocal("calString");
+  if (string === undefined) string = "";
+  let storedNum = getValueFromLocal("storedNum");
+  if (storedNum == undefined) string = "";
+  const value = Number(storedNum) - Number(string);
+  if (isNaN(value)) {
+    showErrForSomeTime("Invalid Input!");
+    return;
+  }
+  setValueInLocal("storedNum", value);
+}
+
+function recallTheValueFromMemory() {
+  let string = getValueFromLocal("storedNum");
+  setCharAtInputField(string);
+}
+
+function buttonVisibilityHandler(mRecallBtn, mClearBtn) {
+  console.log(getValueFromLocal("storedNums"));
+  if (
+    getValueFromLocal("storedNum") == 0 &&
+    getValueFromLocal("storedNums") == undefined
+  ) {
+    mRecallBtn.disabled = true;
+    mClearBtn.disabled = true;
+  } else {
+    mRecallBtn.disabled = false;
+    mClearBtn.disabled = false;
+  }
+}
+
 //== change in UI functions ==
 
 //fn that changes color
@@ -437,4 +494,43 @@ function changeInUnitOfAngle() {
 function changeTheUnitInHtml(string) {
   const unitOfAngleBtn = document.getElementById("unit-of-angle");
   unitOfAngleBtn.innerHTML = string;
+}
+
+// === drawer and related to that fns ===
+function dynamicStyleDrawer(drawerContent, rect) {
+  drawerContent.style.bottom = `calc(100% - ${rect.bottom}px)`;
+  drawerContent.style.height = `${rect.height * 0.65}px`;
+}
+
+function drawerShow(drawerContent) {
+  drawerContent.style.display = "inline";
+}
+
+function drawerClose(drawerContent) {
+  drawerContent.style.display = "none";
+}
+
+function showStoredNumbers() {
+  const array = getValueFromLocal("storedNums")?.split(",");
+  let storedDiv = document.querySelector(".stored-nums-container");
+  while (storedDiv?.firstChild) {
+    storedDiv.firstChild?.remove();
+  }
+  let child = array?.map(number => {
+    return `<p class="me-3 h5" > ${number} </p>`;
+  });
+  if (child !== undefined) {
+    for (const i of child) {
+      storedDiv.insertAdjacentHTML("beforeend", i);
+    }
+  }
+}
+
+function removeNumbers() {
+  let storedDiv = document.querySelector(".stored-nums-container");
+  while (storedDiv?.firstChild) {
+    storedDiv.firstChild?.remove();
+  }
+  storedNumbers = [];
+  setValueInLocal("storedNums", "");
 }
