@@ -48,7 +48,40 @@
           <button class="btn bg-transparent"><b>M+</b></button>
           <button class="btn bg-transparent"><b>M-</b></button>
           <button class="btn bg-transparent"><b>MS</b></button>
-          <!-- <button class="btn bg-transparent"><b>M</b></button> -->
+          <button
+            class="btn bg-transparent d-flex justify-content-evenly align-items-center"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasBottom"
+            aria-controls="offcanvasBottom"
+          >
+            <b> M</b>
+            <img
+              src="./images/sort-down.png"
+              alt="sort-down-img"
+              class="sort-down-img"
+            />
+          </button>
+        </div>
+        <div
+          class="offcanvas offcanvas-bottom"
+          tabindex="-1"
+          id="offcanvasBottom"
+          aria-labelledby="offcanvasBottomLabel"
+          width="100px"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasBottomLabel">
+              Offcanvas bottom
+            </h5>
+            <button
+              type="button"
+              class="btn-close text-reset"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body small">...</div>
         </div>
         <div class="d-flex justify-content-start align-items-center">
           <div class="dropdown border-0">
@@ -60,12 +93,11 @@
               data-bs-auto-close="outside"
               aria-expanded="false"
             >
-              <span>
-                <img
-                  src="./images/triangle.png"
-                  alt="triangle"
-                  class="trigono-img mb-1 me-1"
-              /></span>
+              <img
+                src="./images/triangle.png"
+                alt="triangle"
+                class="trigono-img mb-1 me-1"
+              />
               <span>Trigonometry</span>
             </button>
             <ul
@@ -200,12 +232,11 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <span
-                ><img
-                  src="./images/function-f.png"
-                  alt="function-f"
-                  class="fn-img"
-              /></span>
+              <img
+                src="./images/function-f.png"
+                alt="function-f"
+                class="fn-img"
+              />
               <span>Function</span>
             </button>
             <ul

@@ -83,3 +83,6 @@
   transition: 0.5s ease-in-out;
   box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.062rem 0.31rem;
 }
+.sort-down-img {
+  width: 0.6rem;
+}
