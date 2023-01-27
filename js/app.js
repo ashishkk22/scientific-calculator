@@ -11,6 +11,7 @@ let unitOfAngle = {
 let box = document.getElementById("calculator-div");
 let rect = box.getBoundingClientRect();
 let drawerContent = document.querySelector(".drawer-content");
+//to adjust the drawer position, if resize window
 addEventListener("resize", () => {
   let rect = box.getBoundingClientRect();
   dynamicStyleDrawer(drawerContent, rect);
@@ -18,6 +19,7 @@ addEventListener("resize", () => {
 
 let mRecallBtn = document.getElementById("m-recall");
 let mClearBtn = document.getElementById("m-clear");
+//enable or disable the btn
 buttonVisibilityHandler(mRecallBtn, mClearBtn);
 
 //set and get the data from the local storage
@@ -71,6 +73,7 @@ const array = [
   "e**",
 ];
 
+//to store the nums
 let storedNumbers = [];
 
 const inputField = document.querySelector("textarea");
@@ -79,6 +82,7 @@ const inputField = document.querySelector("textarea");
 getValueFromLocal("calString") === undefined
   ? inputField.value
   : (inputField.value = getValueFromLocal("calString"));
+
 const mainElementForEvents = document.querySelector("#calculator-div");
 
 //only one main event listener for all the btn (event delegation)
@@ -87,14 +91,11 @@ mainElementForEvents.addEventListener("click", btnClickHandler);
 function btnClickHandler(e) {
   //currentTarget --> element that the listener was bound to.
   //target --> on we do actually click
-
   if (e.target != e.currentTarget) {
     let stringFromLocalStorage = getValueFromLocal("calString");
     let storedNumberOutput = getValueFromLocal("storedNum");
     storedNumberOutput === undefined ? setValueInLocal("storedNum", 0) : 0;
     var clickedItem = e.target.id;
-
-    console.log(clickedItem);
     switch (clickedItem) {
       case isOperationPresent(clickedItem):
         simpleCalculation(clickedItem);
@@ -181,6 +182,15 @@ function btnClickHandler(e) {
         break;
       case "to-expo":
         toExponentialConvert();
+        break;
+      case "plus-minus":
+        changeTheValue();
+        break;
+      case "dms":
+        degToDms();
+        break;
+      case "deg":
+        inputToDeg();
         break;
       case "second-fn-trigno":
         if (flagForHypBtn) {

@@ -402,6 +402,59 @@ function toExponentialConvert() {
   setCharAtInputField(expoNum);
 }
 
+//change the value plus to minus or minus to plus
+function changeTheValue() {
+  let value = getValueFromLocal("calString");
+  if (value.charAt(0) == "-") {
+    value = value.substring(1, value.length);
+  } else {
+    value = "-" + value;
+  }
+  setCharAtInputField(value);
+}
+
+//degree to dms
+function degToDms() {
+  let deg = getValueFromLocal("calString");
+  if (unitOfAngle.degree === false || isNaN(Number(deg))) {
+    showErrForSomeTime("Please enter the input in DEG with numbers!");
+    return;
+  }
+  let d = Math.floor(deg);
+  let minfloat = (deg - d) * 60;
+  let m = Math.floor(minfloat);
+  let secfloat = (minfloat - m) * 60;
+  let s = Math.round(secfloat);
+  // After rounding, the seconds might become 60.
+  if (s == 60) {
+    m++;
+    s = 0;
+  }
+  if (m == 60) {
+    d++;
+    m = 0;
+  }
+  let output = "" + d + ":" + m + ":" + s;
+  setCharAtInputField(output);
+}
+
+//radian, grade to deg
+function inputToDeg() {
+  let value = getValueFromLocal("calString");
+  if (unitOfAngle.degree === true) {
+    return;
+  } else if (unitOfAngle.radian === true) {
+    value = value * (180 / Math.PI);
+  } else if (unitOfAngle.grad === true) {
+    value = value / 0.0157;
+  }
+  if (isNaN(value)) {
+    showErrForSomeTime("Please enter Numbers!");
+    return;
+  }
+  setCharAtInputField(value);
+}
+
 //=== stored memory cal fn ===
 function addTheValueToMemory() {
   let string = getValueFromLocal("calString");
@@ -416,6 +469,7 @@ function addTheValueToMemory() {
   setValueInLocal("storedNum", value);
 }
 
+//minus the value from the stored
 function removeTheValueFromMemory() {
   let string = getValueFromLocal("calString");
   if (string === undefined) string = "";
@@ -429,13 +483,14 @@ function removeTheValueFromMemory() {
   setValueInLocal("storedNum", value);
 }
 
+//show the output of cal (stored num)
 function recallTheValueFromMemory() {
   let string = getValueFromLocal("storedNum");
   setCharAtInputField(string);
 }
 
+//visibility of btn based on the memory
 function buttonVisibilityHandler(mRecallBtn, mClearBtn) {
-  console.log(getValueFromLocal("storedNums"));
   if (
     getValueFromLocal("storedNum") == 0 &&
     getValueFromLocal("storedNums") == undefined
@@ -448,7 +503,7 @@ function buttonVisibilityHandler(mRecallBtn, mClearBtn) {
   }
 }
 
-//== change in UI functions ==
+//== change in btn UI functions ==
 
 //fn that changes color
 function changeButtonColor(e) {
@@ -500,6 +555,7 @@ function changeTheUnitInHtml(string) {
 function dynamicStyleDrawer(drawerContent, rect) {
   drawerContent.style.bottom = `calc(100% - ${rect.bottom}px)`;
   drawerContent.style.height = `${rect.height * 0.65}px`;
+  drawerContent.style.width = `${rect.width}px`;
 }
 
 function drawerShow(drawerContent) {
@@ -510,8 +566,16 @@ function drawerClose(drawerContent) {
   drawerContent.style.display = "none";
 }
 
+//show the stored nums with child append
 function showStoredNumbers() {
   const array = getValueFromLocal("storedNums")?.split(",");
+  if (array === undefined) {
+    document.getElementById("empty-msg").innerText =
+      "There's is nothing saved in your memory";
+    return;
+  } else {
+    document.getElementById("empty-msg").innerText = "";
+  }
   let storedDiv = document.querySelector(".stored-nums-container");
   while (storedDiv?.firstChild) {
     storedDiv.firstChild?.remove();
@@ -526,11 +590,14 @@ function showStoredNumbers() {
   }
 }
 
+//remove number from the ui and memory
 function removeNumbers() {
   let storedDiv = document.querySelector(".stored-nums-container");
   while (storedDiv?.firstChild) {
     storedDiv.firstChild?.remove();
   }
+  document.getElementById("empty-msg").innerText =
+    "There's is nothing saved in your memory";
   storedNumbers = [];
   setValueInLocal("storedNums", "");
 }

@@ -62,7 +62,7 @@
           </button>
           <div class="drawer-content flex-column align-content-between">
             <div class="d-flex justify-content-between align-content-center">
-              <p class="m-3">There's is nothing saved in your memory</p>
+              <p class="m-3 empty-msg" id="empty-msg"></p>
               <button class="close-btn border-0">
                 <img
                   src="./images/close-button.png"
@@ -257,8 +257,10 @@
               </div>
               <div class="d-flex">
                 <button class="btn btn-small" id="random-num">rand</button>
-                <button class="btn btn-small" id="abs">&#x21FE; dms</button>
-                <button class="btn btn-small text-center">&#x21FE; deg</button>
+                <button class="btn btn-small" id="dms">&#x21FE; dms</button>
+                <button class="btn btn-small text-center" id="deg">
+                  &#x21FE; deg
+                </button>
               </div>
             </ul>
           </div>
@@ -336,7 +338,7 @@
           <button class="btn d-none 2nd-toggle-btn" id="e-sq-x">
             e <sup>x</sup>
           </button>
-          <button class="btn">+/-</button>
+          <button class="btn" id="plus-minus">+/-</button>
           <button class="btn fw-bold" id="0">0</button>
           <button class="btn" id=".">.</button>
           <button class="btn btn-blue fs-4" id="=">=</button>

@@ -12,15 +12,15 @@
 }
 .center-container {
   flex-direction: column;
-  width: 25rem;
+  width: 24rem;
   padding: 0.6rem;
   max-height: 100%;
   box-shadow: 0rem 0rem 0.25rem 0.0625rem grey;
 }
 .btn {
   background-color: white;
-  width: 4.5rem;
-  height: 3rem;
+  width: 4.4rem;
+  height: 2.9rem;
   color: black;
   border-radius: 0;
   margin: 0rem 0.1rem;
@@ -92,7 +92,6 @@
 }
 .drawer-content {
   position: absolute;
-  width: 25rem;
   height: 26rem;
   text-align: right;
   z-index: 1;
@@ -122,7 +121,23 @@
   right: 0.2rem;
 }
 .stored-nums-container {
+  margin-top: 0.5rem;
   max-height: 75%;
   overflow: hidden;
   overflow-y: scroll;
+}
+.empty-msg {
+  text-align: justify;
+}
+
+/* responsive media queries */
+@media only screen and (max-width: 415px) {
+  .center-container {
+    width: 22rem;
+  }
+}
+@media only screen and (max-width: 365px) {
+  .center-container {
+    width: 20rem;
+  }
 }
