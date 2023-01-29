@@ -132,15 +132,7 @@
 
 /* responsive media queries */
 @media only screen and (max-width: 415px), (max-height: 600px) {
-  .center-container {
-    width: 21rem;
-  }
-  .btn {
-    height: 2.2rem;
-  }
-}
-@media only screen and (max-width: 365px) {
-  .center-container {
-    width: 20rem;
+  * {
+    font-size: 14px;
   }
 }
