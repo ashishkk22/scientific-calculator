@@ -12,15 +12,15 @@
 }
 .center-container {
   flex-direction: column;
-  width: 24rem;
+  width: 23rem;
   padding: 0.6rem;
   max-height: 100%;
   box-shadow: 0rem 0rem 0.25rem 0.0625rem grey;
 }
 .btn {
   background-color: white;
-  width: 4.4rem;
-  height: 2.9rem;
+  width: 4.3rem;
+  height: 2.5rem;
   color: black;
   border-radius: 0;
   margin: 0rem 0.1rem;
@@ -98,7 +98,7 @@
   background-color: #f8f9fa;
   border: 0.01rem solid rgba(131, 131, 131, 0.35);
   border-radius: 0.5rem 1rem 0rem 0rem;
-  box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.03rem 0.31rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0.1rem 0.03rem 0.31rem;
   display: none;
 }
 .close-btn {
@@ -131,9 +131,12 @@
 }
 
 /* responsive media queries */
-@media only screen and (max-width: 415px) {
+@media only screen and (max-width: 415px), (max-height: 600px) {
   .center-container {
-    width: 22rem;
+    width: 21rem;
+  }
+  .btn {
+    height: 2.2rem;
   }
 }
 @media only screen and (max-width: 365px) {
