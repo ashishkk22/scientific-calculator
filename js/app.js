@@ -14,7 +14,9 @@ let drawerContent = document.querySelector(".drawer-content");
 //to adjust the drawer position, if resize window
 addEventListener("resize", () => {
   let rect = box.getBoundingClientRect();
-  dynamicStyleDrawer(drawerContent, rect);
+  // dynamicStyleDrawer(drawerContent, rect);
+  // dynamicStyleDrawerWithDebounce(dynamicStyleDrawer, 3000, drawerContent, rect);
+  dynamicStyleDrawerWithDebounce(drawerContent, rect);
 });
 
 let mRecallBtn = document.getElementById("m-recall");

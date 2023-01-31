@@ -553,10 +553,33 @@ function changeTheUnitInHtml(string) {
 
 // === drawer and related to that fns ===
 function dynamicStyleDrawer(drawerContent, rect) {
+  console.log("called");
   drawerContent.style.bottom = `calc(100% - ${rect.bottom}px)`;
   drawerContent.style.height = `${rect.height * 0.65}px`;
   drawerContent.style.width = `${rect.width}px`;
 }
+//debounce polyfill
+
+function myDebounce(cb, d) {
+  let timer;
+  return function (...args) {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      cb(...args);
+    }, d);
+  };
+}
+const dynamicStyleDrawerWithDebounce = myDebounce((drawerContent, rect) => {
+  dynamicStyleDrawer(drawerContent, rect);
+}, 3000);
+
+// let timer;
+// function dynamicStyleDrawerWithDebounce(fn, d, ...args) {
+//   clearTimeout(timer);
+//   timer = setTimeout(() => {
+//     fn(...args);
+//   }, d);
+// }
 
 function drawerShow(drawerContent) {
   drawerContent.style.display = "inline";
