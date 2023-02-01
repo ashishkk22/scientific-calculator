@@ -1,6 +1,6 @@
 //basic operation is present or not
 function isOperationPresent(clickedItem) {
-  return array.includes(clickedItem) ? clickedItem : "#";
+  return arrayOfOperations.includes(clickedItem) ? clickedItem : "#";
 }
 
 //fn that is going to just add the operation in the string
@@ -553,13 +553,12 @@ function changeTheUnitInHtml(string) {
 
 // === drawer and related to that fns ===
 function dynamicStyleDrawer(drawerContent, rect) {
-  console.log("called");
   drawerContent.style.bottom = `calc(100% - ${rect.bottom}px)`;
   drawerContent.style.height = `${rect.height * 0.65}px`;
   drawerContent.style.width = `${rect.width}px`;
 }
-//debounce polyfill
 
+//debounce polyfill
 function myDebounce(cb, d) {
   let timer;
   return function (...args) {
@@ -571,7 +570,7 @@ function myDebounce(cb, d) {
 }
 const dynamicStyleDrawerWithDebounce = myDebounce((drawerContent, rect) => {
   dynamicStyleDrawer(drawerContent, rect);
-}, 3000);
+}, 1000);
 
 // let timer;
 // function dynamicStyleDrawerWithDebounce(fn, d, ...args) {
@@ -591,8 +590,8 @@ function drawerClose(drawerContent) {
 
 //show the stored nums with child append
 function showStoredNumbers() {
-  const array = getValueFromLocal("storedNums")?.split(",");
-  if (array === undefined) {
+  const arrayOfNumbers = getValueFromLocal("storedNums")?.split(",");
+  if (arrayOfNumbers === undefined) {
     document.getElementById("empty-msg").innerText =
       "There's is nothing saved in your memory";
     return;
@@ -603,7 +602,7 @@ function showStoredNumbers() {
   while (storedDiv?.firstChild) {
     storedDiv.firstChild?.remove();
   }
-  let child = array?.map(number => {
+  let child = arrayOfNumbers?.map(number => {
     return `<p class="me-3 h5" > ${number} </p>`;
   });
   if (child !== undefined) {

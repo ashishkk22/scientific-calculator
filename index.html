@@ -28,7 +28,6 @@
         <div>Scientific Calculator</div>
         <div>
           <textarea
-            type="text"
             class="input-field form-control shadow-none"
             id="input-field"
             wrap="soft"
@@ -90,7 +89,7 @@
             <button
               class="btn dropdown-toggle btn-dropdown border-0 bg-transparent"
               type="button"
-              id="dropdownMenuButton1"
+              id="dropdownMenuButton2"
               data-bs-toggle="dropdown"
               data-bs-auto-close="outside"
               aria-expanded="false"
@@ -102,7 +101,7 @@
               />
               <span>Trigonometry</span>
             </button>
-            <ul
+            <div
               class="dropdown-menu p-0 bg-light"
               aria-labelledby="dropdownMenuButton1"
             >
@@ -224,7 +223,7 @@
                   coth
                 </button>
               </div>
-            </ul>
+            </div>
           </div>
           <div class="dropdown">
             <button
@@ -241,12 +240,12 @@
               />
               <span>Function</span>
             </button>
-            <ul
+            <div
               class="dropdown-menu p-0 bg-light"
               aria-labelledby="dropdownMenuButton1"
             >
               <div class="d-flex">
-                <button class="btn btn-small" id="abs">
+                <button class="btn btn-small" id="abs2">
                   &#x23A2;x &#x23A2;
                 </button>
                 <button class="btn btn-small" id="floor">
@@ -263,7 +262,7 @@
                   &#x21FE; deg
                 </button>
               </div>
-            </ul>
+            </div>
           </div>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-1">
@@ -276,7 +275,6 @@
               src="./images/remove-icon.png"
               alt="remove-icon"
               class="remove-icon-img"
-              id="remove-char"
             />
           </button>
         </div>
@@ -288,7 +286,7 @@
             x<sup>3</sup>
           </button>
           <button class="btn" id="1/x">1/x</button>
-          <button class="btn" id="abs">&#x23A2;x &#x23A2;</button>
+          <button class="btn" id="abs1">&#x23A2;x &#x23A2;</button>
           <button class="btn" id="e**">exp</button>
           <button class="btn" id="%">mod</button>
         </div>
@@ -325,8 +323,8 @@
           <button class="btn" id="-"><b>-</b></button>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-1">
-          <button class="btn d-inline 2nd-toggle-btn" id="log">log</button>
-          <button class="btn d-none 2nd-toggle-btn" id="log">
+          <button class="btn d-inline 2nd-toggle-btn" id="log1">log</button>
+          <button class="btn d-none 2nd-toggle-btn" id="log2">
             log <sub>y</sub>x
           </button>
           <button class="btn fw-bold" id="1">1</button>

@@ -11,11 +11,10 @@ let unitOfAngle = {
 let box = document.getElementById("calculator-div");
 let rect = box.getBoundingClientRect();
 let drawerContent = document.querySelector(".drawer-content");
+
 //to adjust the drawer position, if resize window
 addEventListener("resize", () => {
-  let rect = box.getBoundingClientRect();
-  // dynamicStyleDrawer(drawerContent, rect);
-  // dynamicStyleDrawerWithDebounce(dynamicStyleDrawer, 3000, drawerContent, rect);
+  rect = box.getBoundingClientRect();
   dynamicStyleDrawerWithDebounce(drawerContent, rect);
 });
 
@@ -44,7 +43,7 @@ Number.prototype.factorial = function () {
 };
 
 //array to check the operations.
-const array = [
+const arrayOfOperations = [
   "1",
   "2",
   "3",
@@ -70,7 +69,8 @@ const array = [
   ")",
   "e",
   "π",
-  "log",
+  "log1",
+  "log2",
   "ln",
   "e**",
 ];
@@ -100,6 +100,9 @@ function btnClickHandler(e) {
     var clickedItem = e.target.id;
     switch (clickedItem) {
       case isOperationPresent(clickedItem):
+        if (clickedItem == "log1" || clickedItem == "log2") {
+          clickedItem = "log";
+        }
         simpleCalculation(clickedItem);
         break;
       case "m-plus":
@@ -161,7 +164,8 @@ function btnClickHandler(e) {
       case "2**":
         stringPreAdder(stringFromLocalStorage, "2**");
         break;
-      case "abs":
+      case "abs1":
+      case "abs2":
         absCal(stringFromLocalStorage);
         break;
       case "random-num":
