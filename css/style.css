@@ -122,7 +122,8 @@
 }
 .stored-nums-container {
   margin-top: 0.5rem;
-  max-height: 75%;
+
+  max-height: 72%;
   overflow: hidden;
   overflow-y: scroll;
 }

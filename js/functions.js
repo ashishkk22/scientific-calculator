@@ -657,7 +657,6 @@ export function removeNumbers() {
   }
   document.getElementById("empty-msg").innerText =
     "There's is nothing saved in your memory";
-  storedNumbers = [];
   setValueInLocal("storedNums", "");
 }
 

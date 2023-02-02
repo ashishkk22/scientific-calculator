@@ -117,6 +117,7 @@ function btnClickHandler(e) {
         break;
       case "remove-nums":
         removeNumbers();
+        storedNumbers = [];
         buttonVisibilityHandler(mRecallBtn, mClearBtn);
         break;
       case "=":
