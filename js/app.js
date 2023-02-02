@@ -1,12 +1,44 @@
+import {
+  inputField,
+  isOperationPresent,
+  simpleCalculation,
+  calculationOfSimpleCal,
+  absCal,
+  powerAndRootCal,
+  removeCharFromCal,
+  stringPreAdder,
+  isTrignoCal,
+  setCharAtInputField,
+  randomNumberGenerator,
+  floorNumberCal,
+  celiNumberCal,
+  toExponentialConvert,
+  changeTheValue,
+  degToDms,
+  inputToDeg,
+  addTheValueToMemory,
+  removeTheValueFromMemory,
+  recallTheValueFromMemory,
+  buttonVisibilityHandler,
+  changeButtonColor,
+  secondBtnShow,
+  changeInUnitOfAngle,
+  dynamicStyleDrawer,
+  dynamicStyleDrawerWithDebounce,
+  drawerShow,
+  drawerClose,
+  showStoredNumbers,
+  removeNumbers,
+  setValueInLocal,
+  getValueFromLocal,
+} from "./functions.js";
+
 //two flags to toggle the btn
 let flagForToggleBtn = false;
 let flagForHypBtn = false;
-//object to track the unit that changes on click
-let unitOfAngle = {
-  degree: true,
-  radian: false,
-  grad: false,
-};
+
+//to store the nums
+let storedNumbers = [];
 
 let box = document.getElementById("calculator-div");
 let rect = box.getBoundingClientRect();
@@ -23,62 +55,10 @@ let mClearBtn = document.getElementById("m-clear");
 //enable or disable the btn
 buttonVisibilityHandler(mRecallBtn, mClearBtn);
 
-//set and get the data from the local storage
-function setValueInLocal(key, value) {
-  localStorage.setItem(key, value);
-}
-
-//get the values from the local storage
-function getValueFromLocal(key) {
-  if (!localStorage.getItem(key)) {
-    setValueInLocal(key, "");
-  } else {
-    return localStorage.getItem(key);
-  }
-}
-
 //factorial method on Number
 Number.prototype.factorial = function () {
   return this > 0 ? this * (this - 1).factorial() : 1; //factorial logic
 };
-
-//array to check the operations.
-const arrayOfOperations = [
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "0",
-  ".",
-  "+",
-  "-",
-  "/",
-  "*",
-  "**",
-  "!",
-  "**2",
-  "**3",
-  "%",
-  "rt",
-  "(",
-  ")",
-  "e",
-  "π",
-  "log1",
-  "log2",
-  "ln",
-  "e**",
-];
-
-//to store the nums
-let storedNumbers = [];
-
-const inputField = document.querySelector("textarea");
 
 //set initial value in the input field empty or existing
 getValueFromLocal("calString") === undefined

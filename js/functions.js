@@ -1,10 +1,52 @@
+//array to check the operations.
+const arrayOfOperations = [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "0",
+  ".",
+  "+",
+  "-",
+  "/",
+  "*",
+  "**",
+  "!",
+  "**2",
+  "**3",
+  "%",
+  "rt",
+  "(",
+  ")",
+  "e",
+  "π",
+  "log1",
+  "log2",
+  "ln",
+  "e**",
+];
+
+//object to track the unit that changes on click
+let unitOfAngle = {
+  degree: true,
+  radian: false,
+  grad: false,
+};
+
+export const inputField = document.querySelector("textarea");
+
 //basic operation is present or not
-function isOperationPresent(clickedItem) {
+export function isOperationPresent(clickedItem) {
   return arrayOfOperations.includes(clickedItem) ? clickedItem : "#";
 }
 
 //fn that is going to just add the operation in the string
-function simpleCalculation(value) {
+export function simpleCalculation(value) {
   let string = getValueFromLocal("calString");
   if (string === undefined) string = "";
   string += value;
@@ -12,7 +54,7 @@ function simpleCalculation(value) {
 }
 
 //going to fire on = click
-function calculationOfSimpleCal(stringFromLocalStorage) {
+export function calculationOfSimpleCal(stringFromLocalStorage) {
   stringFromLocalStorage = stringCalHandler(stringFromLocalStorage);
 }
 
@@ -40,7 +82,7 @@ function stringCalHandler(str) {
 }
 
 //abs cal logic
-function absCal(string) {
+export function absCal(string) {
   string = Math.abs(string);
   if (isNaN(string)) {
     showErrForSomeTime();
@@ -50,7 +92,7 @@ function absCal(string) {
 }
 
 //diff. square and root combination fn logic
-function powerAndRootCal(string, factor = 1, power = 1) {
+export function powerAndRootCal(string, factor = 1, power = 1) {
   let result = Math.pow(string, power / factor);
   if (isNaN(result)) {
     showErrForSomeTime();
@@ -95,13 +137,13 @@ function customRootCal(str) {
 }
 
 //backspace btn logic to remove last char
-function removeCharFromCal(string) {
+export function removeCharFromCal(string) {
   string = string?.substring(0, string.length - 1);
   setCharAtInputField(string);
 }
 
 //append the string at start
-function stringPreAdder(string, addString) {
+export function stringPreAdder(string, addString) {
   string == undefined ? (string = "") : (string = string);
   string = addString + string;
   setCharAtInputField(string);
@@ -136,7 +178,7 @@ let trignoOperations = [
 ];
 
 //operation is trigno or not
-function isTrignoCal(clickedItem) {
+export function isTrignoCal(clickedItem) {
   trignoOperations.includes(clickedItem)
     ? trignoOperationHandler(clickedItem)
     : "";
@@ -356,7 +398,7 @@ function showErrForSomeTime(string) {
 }
 
 //fn to set the string in the input field
-function setCharAtInputField(string) {
+export function setCharAtInputField(string) {
   if (string === undefined) {
     inputField.value = "";
     return;
@@ -366,13 +408,13 @@ function setCharAtInputField(string) {
 }
 
 //random number gen with below input value
-function randomNumberGenerator(string) {
+export function randomNumberGenerator(string) {
   const randomNumber = Math.floor(Math.random() * string);
   setCharAtInputField(randomNumber);
 }
 
 //cal floorN from input
-function floorNumberCal(string) {
+export function floorNumberCal(string) {
   const newRoundOfNumber = Math.floor(string);
   if (isNaN(newRoundOfNumber)) {
     showErrForSomeTime();
@@ -382,7 +424,7 @@ function floorNumberCal(string) {
 }
 
 //cal celiN from input
-function celiNumberCal(string) {
+export function celiNumberCal(string) {
   const newCeliNumber = Math.ceil(string);
   if (isNaN(newCeliNumber)) {
     showErrForSomeTime();
@@ -391,7 +433,7 @@ function celiNumberCal(string) {
   setCharAtInputField(newCeliNumber);
 }
 
-function toExponentialConvert() {
+export function toExponentialConvert() {
   let string = getValueFromLocal("calString");
   let expoNum = Number.parseFloat(string).toExponential();
   if (isNaN(expoNum)) {
@@ -403,7 +445,7 @@ function toExponentialConvert() {
 }
 
 //change the value plus to minus or minus to plus
-function changeTheValue() {
+export function changeTheValue() {
   let value = getValueFromLocal("calString");
   if (value.charAt(0) == "-") {
     value = value.substring(1, value.length);
@@ -414,7 +456,7 @@ function changeTheValue() {
 }
 
 //degree to dms
-function degToDms() {
+export function degToDms() {
   let deg = getValueFromLocal("calString");
   if (unitOfAngle.degree === false || isNaN(Number(deg))) {
     showErrForSomeTime("Please enter the input in DEG with numbers!");
@@ -439,7 +481,7 @@ function degToDms() {
 }
 
 //radian, grade to deg
-function inputToDeg() {
+export function inputToDeg() {
   let value = getValueFromLocal("calString");
   if (unitOfAngle.degree === true) {
     return;
@@ -456,7 +498,7 @@ function inputToDeg() {
 }
 
 //=== stored memory cal fn ===
-function addTheValueToMemory() {
+export function addTheValueToMemory() {
   let string = getValueFromLocal("calString");
   if (string === undefined) string = "";
   let storedNum = getValueFromLocal("storedNum");
@@ -470,7 +512,7 @@ function addTheValueToMemory() {
 }
 
 //minus the value from the stored
-function removeTheValueFromMemory() {
+export function removeTheValueFromMemory() {
   let string = getValueFromLocal("calString");
   if (string === undefined) string = "";
   let storedNum = getValueFromLocal("storedNum");
@@ -484,13 +526,13 @@ function removeTheValueFromMemory() {
 }
 
 //show the output of cal (stored num)
-function recallTheValueFromMemory() {
+export function recallTheValueFromMemory() {
   let string = getValueFromLocal("storedNum");
   setCharAtInputField(string);
 }
 
 //visibility of btn based on the memory
-function buttonVisibilityHandler(mRecallBtn, mClearBtn) {
+export function buttonVisibilityHandler(mRecallBtn, mClearBtn) {
   if (
     getValueFromLocal("storedNum") == 0 &&
     getValueFromLocal("storedNums") == undefined
@@ -503,17 +545,17 @@ function buttonVisibilityHandler(mRecallBtn, mClearBtn) {
   }
 }
 
-//== change in btn UI functions ==
+//== change in btn UI functions ==//
 
 //fn that changes color
-function changeButtonColor(e) {
+export function changeButtonColor(e) {
   e.target.classList.contains("btn-blue")
     ? e.target.classList.remove("btn-blue")
     : e.target.classList.add("btn-blue");
 }
 
 //fn that show second btn that are hidden on click event
-function secondBtnShow(
+export function secondBtnShow(
   allBtnForToggle,
   classOne = "d-inline",
   classTwo = "d-none"
@@ -529,7 +571,7 @@ function secondBtnShow(
 }
 
 //unit changing in the cal with clicks logic
-function changeInUnitOfAngle() {
+export function changeInUnitOfAngle() {
   if (unitOfAngle.degree === true) {
     unitOfAngle.radian = true;
     unitOfAngle.degree = false;
@@ -552,7 +594,7 @@ function changeTheUnitInHtml(string) {
 }
 
 // === drawer and related to that fns ===
-function dynamicStyleDrawer(drawerContent, rect) {
+export function dynamicStyleDrawer(drawerContent, rect) {
   drawerContent.style.bottom = `calc(100% - ${rect.bottom}px)`;
   drawerContent.style.height = `${rect.height * 0.65}px`;
   drawerContent.style.width = `${rect.width}px`;
@@ -568,28 +610,23 @@ function myDebounce(cb, d) {
     }, d);
   };
 }
-const dynamicStyleDrawerWithDebounce = myDebounce((drawerContent, rect) => {
-  dynamicStyleDrawer(drawerContent, rect);
-}, 1000);
+export const dynamicStyleDrawerWithDebounce = myDebounce(
+  (drawerContent, rect) => {
+    dynamicStyleDrawer(drawerContent, rect);
+  },
+  1000
+);
 
-// let timer;
-// function dynamicStyleDrawerWithDebounce(fn, d, ...args) {
-//   clearTimeout(timer);
-//   timer = setTimeout(() => {
-//     fn(...args);
-//   }, d);
-// }
-
-function drawerShow(drawerContent) {
+export function drawerShow(drawerContent) {
   drawerContent.style.display = "inline";
 }
 
-function drawerClose(drawerContent) {
+export function drawerClose(drawerContent) {
   drawerContent.style.display = "none";
 }
 
 //show the stored nums with child append
-function showStoredNumbers() {
+export function showStoredNumbers() {
   const arrayOfNumbers = getValueFromLocal("storedNums")?.split(",");
   if (arrayOfNumbers === undefined) {
     document.getElementById("empty-msg").innerText =
@@ -613,7 +650,7 @@ function showStoredNumbers() {
 }
 
 //remove number from the ui and memory
-function removeNumbers() {
+export function removeNumbers() {
   let storedDiv = document.querySelector(".stored-nums-container");
   while (storedDiv?.firstChild) {
     storedDiv.firstChild?.remove();
@@ -622,4 +659,20 @@ function removeNumbers() {
     "There's is nothing saved in your memory";
   storedNumbers = [];
   setValueInLocal("storedNums", "");
+}
+
+//==== local storage related fn ==== //
+
+//set and get the data from the local storage
+export function setValueInLocal(key, value) {
+  localStorage.setItem(key, value);
+}
+
+//get the values from the local storage
+export function getValueFromLocal(key) {
+  if (!localStorage.getItem(key)) {
+    setValueInLocal(key, "");
+  } else {
+    return localStorage.getItem(key);
+  }
 }
