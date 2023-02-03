@@ -55,7 +55,7 @@ export function simpleCalculation(value) {
 
 //going to fire on = click
 export function calculationOfSimpleCal(stringFromLocalStorage) {
-  stringFromLocalStorage = stringCalHandler(stringFromLocalStorage);
+  stringCalHandler(stringFromLocalStorage);
 }
 
 //main fn to handle the all cal logics
@@ -150,7 +150,7 @@ export function stringPreAdder(string, addString) {
 }
 
 //all trigonometry operation's array
-let trignoOperations = [
+let TrigonoOperations = [
   "sin",
   "sin-h",
   "sin-in",
@@ -177,15 +177,15 @@ let trignoOperations = [
   "cot-h-in",
 ];
 
-//operation is trigno or not
-export function isTrignoCal(clickedItem) {
-  trignoOperations.includes(clickedItem)
-    ? trignoOperationHandler(clickedItem)
+//operation is Trigono or not
+export function isTrigonoCal(clickedItem) {
+  TrigonoOperations.includes(clickedItem)
+    ? TrigonoOperationHandler(clickedItem)
     : "";
 }
 
 //to handle all the trigonometry operations
-function trignoOperationHandler(clickedItem) {
+function TrigonoOperationHandler(clickedItem) {
   let value = getValueFromLocal("calString");
   if (unitOfAngle.degree === true) {
     //converting degree to radian
@@ -199,27 +199,22 @@ function trignoOperationHandler(clickedItem) {
     return;
   }
   if (clickedItem.includes("sin")) {
-    sinTrignoOperations(clickedItem, value);
+    sinTrigonoOperations(clickedItem, value);
   } else if (clickedItem.includes("cos")) {
-    cosTrignoOperations(clickedItem, value);
+    cosTrigonoOperations(clickedItem, value);
   } else if (clickedItem.includes("tan")) {
-    tanTrignoOperations(clickedItem, value);
+    tanTrigonoOperations(clickedItem, value);
   } else if (clickedItem.includes("csc")) {
-    cscTrignoOperations(clickedItem, value);
+    cscTrigonoOperations(clickedItem, value);
   } else if (clickedItem.includes("sec")) {
-    secTrignoOperations(clickedItem, value);
+    secTrigonoOperations(clickedItem, value);
   } else if (clickedItem.includes("cot")) {
-    cotTrignoOperations(clickedItem, value);
+    cotTrigonoOperations(clickedItem, value);
   }
 }
 
-// let combinedFn = {
-//   "sin":Math.sin(),
-//   "cos":Math.cos(),
-// }
-
 //to handle all the sin operations
-function sinTrignoOperations(clickedItem, value) {
+function sinTrigonoOperations(clickedItem, value) {
   switch (clickedItem) {
     case "sin":
       value = Math.sin(value);
@@ -247,7 +242,7 @@ function sinTrignoOperations(clickedItem, value) {
 }
 
 //to handle all the cos operations
-function cosTrignoOperations(clickedItem, value) {
+function cosTrigonoOperations(clickedItem, value) {
   switch (clickedItem) {
     case "cos":
       value = Math.cos(value);
@@ -276,7 +271,7 @@ function cosTrignoOperations(clickedItem, value) {
 }
 
 //to handle all the tan operations
-function tanTrignoOperations(clickedItem, value) {
+function tanTrigonoOperations(clickedItem, value) {
   switch (clickedItem) {
     case "tan":
       value = Math.tan(value);
@@ -304,7 +299,7 @@ function tanTrignoOperations(clickedItem, value) {
 }
 
 //to handle all the cosec operation
-function cscTrignoOperations(clickedItem, value) {
+function cscTrigonoOperations(clickedItem, value) {
   switch (clickedItem) {
     case "csc":
       value = 1 / Math.sin(value);
@@ -332,7 +327,7 @@ function cscTrignoOperations(clickedItem, value) {
 }
 
 //to handle all the sec operations
-function secTrignoOperations(clickedItem, value) {
+function secTrigonoOperations(clickedItem, value) {
   switch (clickedItem) {
     case "sec":
       value = 1 / Math.cos(value);
@@ -361,7 +356,7 @@ function secTrignoOperations(clickedItem, value) {
 }
 
 //to handle all the cot operations
-function cotTrignoOperations(clickedItem, value) {
+function cotTrigonoOperations(clickedItem, value) {
   switch (clickedItem) {
     case "cot":
       value = 1 / Math.tan(value);
@@ -410,6 +405,10 @@ export function setCharAtInputField(string) {
 //random number gen with below input value
 export function randomNumberGenerator(string) {
   const randomNumber = Math.floor(Math.random() * string);
+  if (isNaN(randomNumber)) {
+    showErrForSomeTime();
+    return;
+  }
   setCharAtInputField(randomNumber);
 }
 
@@ -549,9 +548,9 @@ export function buttonVisibilityHandler(mRecallBtn, mClearBtn) {
 
 //fn that changes color
 export function changeButtonColor(e) {
-  e.target.classList.contains("btn-blue")
-    ? e.target.classList.remove("btn-blue")
-    : e.target.classList.add("btn-blue");
+  e.target.classList.contains("calDiv__btn--blue")
+    ? e.target.classList.remove("calDiv__btn--blue")
+    : e.target.classList.add("calDiv__btn--blue");
 }
 
 //fn that show second btn that are hidden on click event
@@ -635,7 +634,7 @@ export function showStoredNumbers() {
   } else {
     document.getElementById("empty-msg").innerText = "";
   }
-  let storedDiv = document.querySelector(".stored-nums-container");
+  let storedDiv = document.querySelector(".calDiv__numsDiv");
   while (storedDiv?.firstChild) {
     storedDiv.firstChild?.remove();
   }
@@ -651,7 +650,7 @@ export function showStoredNumbers() {
 
 //remove number from the ui and memory
 export function removeNumbers() {
-  let storedDiv = document.querySelector(".stored-nums-container");
+  let storedDiv = document.querySelector(".calDiv__numsDiv");
   while (storedDiv?.firstChild) {
     storedDiv.firstChild?.remove();
   }

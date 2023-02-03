@@ -10,50 +10,50 @@
 ::-webkit-scrollbar {
   width: 0;
 }
-.center-container {
-  flex-direction: column;
+.calDiv {
   width: 23rem;
   padding: 0.6rem;
   max-height: 100%;
   box-shadow: 0rem 0rem 0.25rem 0.0625rem grey;
 }
-.btn {
+.calDiv__btn {
   background-color: white;
+  height: 2.5rem;
+  color: black;
   width: 4.3rem;
-  height: 2.5rem;
-  color: black;
-  border-radius: 0;
   margin: 0rem 0.1rem;
+  white-space: nowrap;
+  border-radius: 0;
 }
-.btn:hover {
+.calDiv__btn:hover {
   background-color: rgba(131, 131, 131, 0.35);
   transition: 0.5s ease-in-out;
-  box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.0625rem 0.3125rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.31rem 0.5rem;
+  border-radius: 0;
 }
-.btn-dropdown {
-  background-color: white;
-  width: 100%;
-  margin: 0rem 0.2rem;
-  height: 2.5rem;
-  color: black;
+.calDiv__dropdownBtn--size {
+  width: 3.9rem;
+  height: 2.6rem;
+  margin: 0.15rem 0.15rem;
 }
-.btn-dropdown:hover {
-  background-color: rgba(131, 131, 131, 0.35);
-  color: black;
-  transition: 0.5s ease-in-out;
-  box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.062rem 0.31rem;
-}
-.remove-icon-img {
-  width: 1.5rem;
-}
-.btn-blue {
+.calDiv__btn--blue {
   background-color: #6690ce !important;
 }
-.btn-blue:hover {
+.calDiv__btn--blue:hover {
   background-color: #4b6da0;
   box-shadow: #6690ce 0rem 0.31rem 0.94rem;
 }
-.input-field {
+.calDiv__removeImg--size {
+  width: 1.5rem;
+}
+.calDiv__removeImg--size {
+  width: 1.5rem;
+}
+.calDiv__trigonoImg--size {
+  transform: rotate(270deg);
+  width: 1.1rem;
+}
+.calDiv__inputField {
   height: 7rem;
   font-size: 2.4rem;
   margin-top: 1rem;
@@ -63,34 +63,13 @@
   resize: none;
   background-color: #f8f9fa !important;
 }
-.trigono-img {
-  transform: rotate(270deg);
-  width: 1.1rem;
-}
-.fn-img {
+.calDiv__fnImg--size {
   width: 1.2rem;
 }
-.btn-small {
-  background-color: white;
-  width: 4rem;
-  height: 2.8rem;
-  color: black;
-  border-radius: 0;
-  margin: 0.2rem 0.2rem;
-  white-space: nowrap;
-}
-.btn-small:hover {
-  background-color: rgba(131, 131, 131, 0.35);
-  transition: 0.5s ease-in-out;
-  box-shadow: rgba(0, 0, 0, 0.35) 0rem 0.062rem 0.31rem;
-}
-.sort-down-img {
+.calDiv__downImg--size {
   width: 0.6rem;
 }
-.memory-drawer {
-  position: relative;
-}
-.drawer-content {
+.calDiv_drawer {
   position: absolute;
   height: 26rem;
   text-align: right;
@@ -101,33 +80,32 @@
   box-shadow: rgba(0, 0, 0, 0.35) 0.1rem 0.03rem 0.31rem;
   display: none;
 }
-.close-btn {
+.calDiv__closeBtn--color {
   background-color: #f8f9fa;
 }
-.close-img {
+.calDiv__closeImg--size {
   width: 1.2rem;
 }
-.delete-btn {
-  padding: 0.2rem;
-  background-color: #f8f9fa;
-}
-.delete-img {
-  width: 1.3rem;
-  height: 1.3rem;
-}
-.delete-btn-div {
+.calDiv__deleteBtnDiv {
   position: absolute;
   top: calc(100% - 3.2rem);
   right: 0.2rem;
 }
-.stored-nums-container {
+.calDiv__deleteBtn--color {
+  padding: 0.2rem;
+  background-color: #f8f9fa;
+}
+.calDiv__deleteImg--size {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.calDiv__numsDiv {
   margin-top: 0.5rem;
-
   max-height: 72%;
   overflow: hidden;
   overflow-y: scroll;
 }
-.empty-msg {
+.calDiv__ErrMsgDiv {
   text-align: justify;
 }
 

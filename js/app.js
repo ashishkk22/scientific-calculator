@@ -7,7 +7,7 @@ import {
   powerAndRootCal,
   removeCharFromCal,
   stringPreAdder,
-  isTrignoCal,
+  isTrigonoCal,
   setCharAtInputField,
   randomNumberGenerator,
   floorNumberCal,
@@ -42,7 +42,7 @@ let storedNumbers = [];
 
 let box = document.getElementById("calculator-div");
 let rect = box.getBoundingClientRect();
-let drawerContent = document.querySelector(".drawer-content");
+let drawerContent = document.querySelector(".calDiv_drawer");
 
 //to adjust the drawer position, if resize window
 addEventListener("resize", () => {
@@ -179,27 +179,28 @@ function btnClickHandler(e) {
       case "deg":
         inputToDeg();
         break;
-      case "second-fn-trigno":
+      case "second-fn-Trigono":
         if (flagForHypBtn) {
           break;
         }
-        const btnsOfTrigno = document.getElementsByClassName("trigno-btn");
+        const btnsOfTrigono = document.getElementsByClassName("Trigono-btn");
         changeButtonColor(e);
-        secondBtnShow(btnsOfTrigno);
+        secondBtnShow(btnsOfTrigono);
         flagForToggleBtn === false
           ? (flagForToggleBtn = true)
           : (flagForToggleBtn = false);
         break;
-      case "second-fn-trigno-h":
+      case "second-fn-Trigono-h":
         if (flagForToggleBtn) {
-          const btnOfHTrignoInverse =
-            document.getElementsByClassName("trigno-h-inv");
+          const btnOfHTrigonoInverse =
+            document.getElementsByClassName("Trigono-h-inv");
           changeButtonColor(e);
-          secondBtnShow(btnOfHTrignoInverse);
+          secondBtnShow(btnOfHTrigonoInverse);
         } else {
-          const btnOfHTrigno = document.getElementsByClassName("trigno-h-btn");
+          const btnOfHTrigono =
+            document.getElementsByClassName("Trigono-h-btn");
           changeButtonColor(e);
-          secondBtnShow(btnOfHTrigno);
+          secondBtnShow(btnOfHTrigono);
         }
         flagForHypBtn === false
           ? (flagForHypBtn = true)
@@ -212,7 +213,7 @@ function btnClickHandler(e) {
         secondBtnShow(allBtnForToggle);
         break;
       default:
-        isTrignoCal(clickedItem);
+        isTrigonoCal(clickedItem);
         break;
     }
   }
