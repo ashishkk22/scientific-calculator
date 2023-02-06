@@ -446,7 +446,7 @@ export function toExponentialConvert() {
 //change the value plus to minus or minus to plus
 export function changeTheValue() {
   let value = getValueFromLocal("calString");
-  if (value.charAt(0) == "-") {
+  if (value.charAt(0) === "-") {
     value = value.substring(1, value.length);
   } else {
     value = "-" + value;
@@ -467,11 +467,11 @@ export function degToDms() {
   let secfloat = (minfloat - m) * 60;
   let s = Math.round(secfloat);
   // After rounding, the seconds might become 60.
-  if (s == 60) {
+  if (s === 60) {
     m++;
     s = 0;
   }
-  if (m == 60) {
+  if (m === 60) {
     d++;
     m = 0;
   }
@@ -515,7 +515,7 @@ export function removeTheValueFromMemory() {
   let string = getValueFromLocal("calString");
   if (string === undefined) string = "";
   let storedNum = getValueFromLocal("storedNum");
-  if (storedNum == undefined) string = "";
+  if (storedNum === undefined) string = "";
   const value = Number(storedNum) - Number(string);
   if (isNaN(value)) {
     showErrForSomeTime("Invalid Input!");
@@ -533,8 +533,8 @@ export function recallTheValueFromMemory() {
 //visibility of btn based on the memory
 export function buttonVisibilityHandler(mRecallBtn, mClearBtn) {
   if (
-    getValueFromLocal("storedNum") == 0 &&
-    getValueFromLocal("storedNums") == undefined
+    getValueFromLocal("storedNum") === "0" &&
+    getValueFromLocal("storedNums") === undefined
   ) {
     mRecallBtn.disabled = true;
     mClearBtn.disabled = true;

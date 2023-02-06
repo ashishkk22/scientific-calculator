@@ -80,7 +80,7 @@ function btnClickHandler(e) {
     var clickedItem = e.target.id;
     switch (clickedItem) {
       case isOperationPresent(clickedItem):
-        if (clickedItem == "log1" || clickedItem == "log2") {
+        if (clickedItem === "log1" || clickedItem === "log2") {
           clickedItem = "log";
         }
         simpleCalculation(clickedItem);
@@ -183,7 +183,7 @@ function btnClickHandler(e) {
         if (flagForHypBtn) {
           break;
         }
-        const btnsOfTrigono = document.getElementsByClassName("Trigono-btn");
+        const btnsOfTrigono = document.getElementsByClassName("trigono-btn");
         changeButtonColor(e);
         secondBtnShow(btnsOfTrigono);
         flagForToggleBtn === false
@@ -193,12 +193,12 @@ function btnClickHandler(e) {
       case "second-fn-Trigono-h":
         if (flagForToggleBtn) {
           const btnOfHTrigonoInverse =
-            document.getElementsByClassName("Trigono-h-inv");
+            document.getElementsByClassName("trigono-h-inv");
           changeButtonColor(e);
           secondBtnShow(btnOfHTrigonoInverse);
         } else {
           const btnOfHTrigono =
-            document.getElementsByClassName("Trigono-h-btn");
+            document.getElementsByClassName("trigono-h-btn");
           changeButtonColor(e);
           secondBtnShow(btnOfHTrigono);
         }
