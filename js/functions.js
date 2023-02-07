@@ -189,7 +189,7 @@ function TrigonoOperationHandler(clickedItem) {
   let value = getValueFromLocal("calString");
   if (unitOfAngle.degree === true) {
     //converting degree to radian
-    value = (value * Math.PI) / 180;
+    value = value * (Math.PI / 180);
   } else if (unitOfAngle.grad === true) {
     //1 Gradians to Radians = 0.0157
     value = value * 0.0157;
