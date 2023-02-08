@@ -635,8 +635,8 @@ export function showStoredNumbers() {
     document.getElementById("empty-msg").innerText = "";
   }
   let storedDiv = document.querySelector(".calDiv__numsDiv");
-  while (storedDiv?.firstChild) {
-    storedDiv.firstChild?.remove();
+  if (storedDiv?.firstChild) {
+    storedDiv.textContent = "";
   }
   let child = arrayOfNumbers?.map(number => {
     return `<p class="me-3 h5" > ${number} </p>`;
@@ -651,8 +651,8 @@ export function showStoredNumbers() {
 //remove number from the ui and memory
 export function removeNumbers() {
   let storedDiv = document.querySelector(".calDiv__numsDiv");
-  while (storedDiv?.firstChild) {
-    storedDiv.firstChild?.remove();
+  if (storedDiv?.firstChild) {
+    storedDiv.textContent = "";
   }
   document.getElementById("empty-msg").innerText =
     "There's is nothing saved in your memory";
