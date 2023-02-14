@@ -314,6 +314,7 @@ function cscTrigonoOperations(clickedItem, value) {
         showErrForSomeTime("Please enter the input from -1 to 1 (RAD)");
         return;
       }
+      break;
     case "csc-h":
       value = 1 / Math.sinh(value);
       break;

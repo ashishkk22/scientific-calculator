@@ -75,7 +75,7 @@ function btnClickHandler(e) {
   //target --> on we do actually click
   if (e.target === e.currentTarget) return;
 
-  //if not clickedOnCurrentTarget
+  //if not clicked On currentTarget
   let stringFromLocalStorage = getValueFromLocal("calString");
   let storedNumberOutput = getValueFromLocal("storedNum");
   storedNumberOutput === undefined ? setValueInLocal("storedNum", 0) : 0;
