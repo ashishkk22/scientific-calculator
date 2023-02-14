@@ -152,7 +152,7 @@ export function stringPreAdder(string, addString) {
 }
 
 //all trigonometry operation's array
-let TrigonoOperations = [
+let trigonoOperations = [
   "sin",
   "sin-h",
   "sin-in",
@@ -181,13 +181,13 @@ let TrigonoOperations = [
 
 //operation is Trigono or not
 export function isTrigonoCal(clickedItem) {
-  TrigonoOperations.includes(clickedItem)
-    ? TrigonoOperationHandler(clickedItem)
+  trigonoOperations.includes(clickedItem)
+    ? trigonoOperationHandler(clickedItem)
     : "";
 }
 
 //to handle all the trigonometry operations
-function TrigonoOperationHandler(clickedItem) {
+function trigonoOperationHandler(clickedItem) {
   let value = getValueFromLocal("calString");
   if (unitOfAngle.degree === true) {
     //converting degree to radian
