@@ -669,9 +669,10 @@ export function setValueInLocal(key, value) {
 
 //get the values from the local storage
 export function getValueFromLocal(key) {
-  if (!localStorage.getItem(key)) {
+  let result = localStorage.getItem(key);
+  if (!result) {
     setValueInLocal(key, "");
   } else {
-    return localStorage.getItem(key);
+    return result;
   }
 }
