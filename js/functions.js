@@ -48,7 +48,7 @@ export function isOperationPresent(clickedItem) {
 //fn that is going to just add the operation in the string
 export function simpleCalculation(value) {
   let string = getValueFromLocal("calString");
-  if (string === undefined) string = "";
+  if (string == undefined) string = "";
   string += value;
   setCharAtInputField(string);
 }
