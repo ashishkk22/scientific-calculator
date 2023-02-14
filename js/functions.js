@@ -144,7 +144,9 @@ export function removeCharFromCal(string) {
 
 //append the string at start
 export function stringPreAdder(string, addString) {
-  string == undefined ? (string = "") : (string = string);
+  if (string == undefined) {
+    string = "";
+  }
   string = addString + string;
   setCharAtInputField(string);
 }
