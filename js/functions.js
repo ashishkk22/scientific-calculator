@@ -628,12 +628,12 @@ export function drawerClose(drawerContent) {
 //show the stored nums with child append
 export function showStoredNumbers() {
   const arrayOfNumbers = getValueFromLocal("storedNums")?.split(",");
+  const errMsg = document.getElementById("empty-msg");
   if (arrayOfNumbers === undefined) {
-    document.getElementById("empty-msg").innerText =
-      "There's is nothing saved in your memory";
+    errMsg.innerText = "There's is nothing saved in your memory";
     return;
   } else {
-    document.getElementById("empty-msg").innerText = "";
+    errMsg.innerText = "";
   }
   let storedDiv = document.querySelector(".calDiv__numsDiv");
   if (storedDiv?.firstChild) {
