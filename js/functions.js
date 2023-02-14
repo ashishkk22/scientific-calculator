@@ -550,9 +550,7 @@ export function buttonVisibilityHandler(mRecallBtn, mClearBtn) {
 
 //fn that changes color
 export function changeButtonColor(e) {
-  e.target.classList.contains("calDiv__btn--blue")
-    ? e.target.classList.remove("calDiv__btn--blue")
-    : e.target.classList.add("calDiv__btn--blue");
+  e.target.classList.toggle("calDiv__btn--blue");
 }
 
 //fn that show second btn that are hidden on click event
