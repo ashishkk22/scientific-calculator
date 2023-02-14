@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Scientific Calculator</title>
+  </head>
+  <body>
+    <!-- main div  -->
+    <div
+      class="container min-vh-100 d-flex justify-content-center align-items-center"
+      id="main-div"
+    >
+      <!-- card container  -->
+      <div
+        class="calDiv bg-light d-flex flex-column justify-content-center"
+        id="calculator-div"
+      >
+        Scientific Calculator
+        <textarea
+          class="calDiv__inputField form-control shadow-none"
+          id="input-field"
+          wrap="soft"
+          maxlength="40"
+          readonly
+        >
+        </textarea>
+        <p class="text-center" id="error-div"></p>
+        <div class="d-flex justify-content-start ms-1">
+          <button
+            class="btn calDiv__btn border-none p-1 bg-transparent"
+            id="unit-of-angle"
+          >
+            DEG
+          </button>
+          <button class="btn calDiv__btn bg-transparent" id="to-expo">
+            F-E
+          </button>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-2">
+          <button class="btn calDiv__btn bg-transparent fw-bold" id="m-clear">
+            MC
+          </button>
+          <button class="btn calDiv__btn bg-transparent fw-bold" id="m-recall">
+            MR
+          </button>
+          <button class="btn calDiv__btn bg-transparent fw-bold" id="m-plus">
+            M+
+          </button>
+          <button class="btn calDiv__btn bg-transparent fw-bold" id="m-minus">
+            M-
+          </button>
+          <button class="btn calDiv__btn bg-transparent fw-bold" id="m-store">
+            MS
+          </button>
+          <button
+            class="btn calDiv__btn bg-transparent d-flex justify-content-evenly align-items-center fw-bold"
+            id="m-show"
+          >
+            M
+            <img
+              src="./images/sort-down.png"
+              alt="sort-down-img"
+              class="calDiv__arrowDownImg--size mb-2 ms-1"
+            />
+          </button>
+          <div
+            class="calDiv_drawer flex-column align-content-between"
+            id="calDiv_drawer"
+          >
+            <div class="d-flex justify-content-between align-content-center">
+              <p class="m-3 calDiv__ErrMsgDiv" id="empty-msg"></p>
+              <button class="calDiv__closeBtn--color border-0">
+                <img
+                  src="./images/close-button.png"
+                  alt="close-btn"
+                  class="calDiv__closeImg--size m-3"
+                  id="drawer-close"
+                />
+              </button>
+            </div>
+            <div class="calDiv__numsDiv"></div>
+            <div class="calDiv__deleteBtnDiv">
+              <button
+                class="calDiv__deleteBtn--color border-0"
+                id="remove-nums"
+              >
+                <img
+                  src="./images/delete.png"
+                  alt="delete-img"
+                  class="calDiv__deleteImg--size m-2"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <div class="dropdown border-0">
+            <button
+              class="btn btn-dropdown border-0 rounded-0 bg-transparent calDiv__dropdownBtn--shadow"
+              type="button"
+              id="dropdownMenuButton2"
+              data-bs-toggle="dropdown"
+              data-bs-auto-close="outside"
+              aria-expanded="false"
+            >
+              <img
+                src="./images/triangle.png"
+                alt="triangle"
+                class="calDiv__trigonoImg--size mb-1 me-1"
+              />
+              Trigonometry
+              <img
+                src="./images/down-arrow.png"
+                alt="down-arrow"
+                class="ms-2 calDiv__arrowDownImg--size"
+              />
+            </button>
+            <ul
+              class="dropdown-menu p-0 bg-light"
+              aria-labelledby="dropdownMenuButton1"
+            >
+              <li class="d-flex">
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size"
+                  id="second-fn-Trigono"
+                >
+                  2 <sup>nd</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-inline trigono-h-btn trigono-btn"
+                  id="sin"
+                >
+                  sin
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-btn trigono-h-inv"
+                  id="sin-in"
+                >
+                  sin <sup>-1</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-h-inv"
+                  id="sin-h-in"
+                >
+                  sinh <sup>-1</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-h-btn"
+                  id="sin-h"
+                >
+                  sinh
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-inline trigono-h-btn trigono-btn"
+                  id="cos"
+                >
+                  cos
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-btn trigono-h-inv"
+                  id="cos-in"
+                >
+                  cos <sup>-1</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-h-inv"
+                  id="cos-h-in"
+                >
+                  cosh <sup>-1</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-h-btn"
+                  id="cos-h"
+                >
+                  cosh
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-inline trigono-h-btn trigono-btn"
+                  id="tan"
+                >
+                  tan
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-btn trigono-h-inv"
+                  id="tan-in"
+                >
+                  tan <sup>-1</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-h-inv"
+                  id="tan-h-in"
+                >
+                  tanh <sup>-1</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-h-btn"
+                  id="tan-h"
+                >
+                  tanh
+                </button>
+              </li>
+              <li class="d-flex">
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size"
+                  id="second-fn-Trigono-h"
+                >
+                  hyp
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-inline trigono-h-btn trigono-btn"
+                  id="sec"
+                >
+                  sec
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-btn trigono-h-inv"
+                  id="sec-in"
+                >
+                  sec <sup>-1</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-h-inv"
+                  id="sec-h-in"
+                >
+                  sech <sup>-1</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-h-btn"
+                  id="sec-h"
+                >
+                  sech
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-inline trigono-h-btn trigono-btn"
+                  id="csc"
+                >
+                  csc
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-btn trigono-h-inv"
+                  id="csc-in"
+                >
+                  csc <sup>-1</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-h-inv"
+                  id="csc-h-in"
+                >
+                  csch <sup>-1</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-h-btn"
+                  id="csc-h"
+                >
+                  csch
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-inline trigono-h-btn trigono-btn"
+                  id="cot"
+                >
+                  cot
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-btn trigono-h-inv"
+                  id="cot-in"
+                >
+                  cot <sup>-1</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-h-inv"
+                  id="cot-h-in"
+                >
+                  coth <sup>-1</sup>
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size d-none trigono-h-btn"
+                  id="cot-h"
+                >
+                  coth
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div class="dropdown">
+            <button
+              class="btn rounded-0 border-0 bg-transparent calDiv__dropdownBtn--shadow"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                src="./images/function-f.png"
+                alt="function-f"
+                class="calDiv__fnImg--size"
+              />
+              Function
+              <img
+                src="./images/down-arrow.png"
+                alt="down-arrow"
+                class="ms-2 calDiv__arrowDownImg--size"
+              />
+            </button>
+            <ul
+              class="dropdown-menu p-0 bg-light"
+              aria-labelledby="dropdownMenuButton1"
+            >
+              <li class="d-flex">
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size"
+                  id="abs2"
+                >
+                  &#x23A2;x &#x23A2;
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size"
+                  id="floor"
+                >
+                  &#x23A3;x&#x23A6;
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size"
+                  id="celi"
+                >
+                  &#x23A1;x&#x23A4;
+                </button>
+              </li>
+              <li class="d-flex">
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size"
+                  id="random-num"
+                >
+                  rand
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size"
+                  id="dms"
+                >
+                  &#x21FE; dms
+                </button>
+                <button
+                  class="btn calDiv__btn calDiv__dropdownBtn--size text-center"
+                  id="deg"
+                >
+                  &#x21FE; deg
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-1">
+          <button class="btn calDiv__btn" id="second-fn">
+            2 <sup>nd</sup>
+          </button>
+          <button class="btn calDiv__btn" id="π">π</button>
+          <button class="btn calDiv__btn" id="e">e</button>
+          <button class="btn calDiv__btn" id="reset-char">C</button>
+          <button class="btn calDiv__btn" id="remove-char">
+            <img
+              src="./images/remove-icon.png"
+              alt="remove-icon"
+              class="calDiv__removeImg--size"
+            />
+          </button>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-1">
+          <button class="btn calDiv__btn d-inline 2nd-toggle-btn" id="**2">
+            x<sup>2</sup>
+          </button>
+          <button class="btn calDiv__btn d-none 2nd-toggle-btn" id="**3">
+            x<sup>3</sup>
+          </button>
+          <button class="btn calDiv__btn" id="1/x">1/x</button>
+          <button class="btn calDiv__btn" id="abs1">&#x23A2;x &#x23A2;</button>
+          <button class="btn calDiv__btn" id="e**">exp</button>
+          <button class="btn calDiv__btn" id="%">mod</button>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-1">
+          <button class="btn calDiv__btn d-inline 2nd-toggle-btn" id="sqrt">
+            2&#8730;x
+          </button>
+          <button class="btn calDiv__btn d-none 2nd-toggle-btn" id="cbrt">
+            3&#8730;x
+          </button>
+          <button class="btn calDiv__btn" id="(">(</button>
+          <button class="btn calDiv__btn" id=")">)</button>
+          <button class="btn calDiv__btn" id="!">n!</button>
+          <button class="btn calDiv__btn fs-4" id="/">÷</button>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-1">
+          <button class="btn calDiv__btn d-inline 2nd-toggle-btn" id="**">
+            x<sup>y</sup>
+          </button>
+          <button class="btn calDiv__btn d-none 2nd-toggle-btn" id="rt">
+            y&#8730;x
+          </button>
+          <button class="btn calDiv__btn fw-bold" id="7">7</button>
+          <button class="btn calDiv__btn fw-bold" id="8">8</button>
+          <button class="btn calDiv__btn fw-bold" id="9">9</button>
+          <button class="btn calDiv__btn" id="*"><b>x</b></button>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-1">
+          <button class="btn calDiv__btn d-inline 2nd-toggle-btn" id="10sq">
+            10<sup>x</sup>
+          </button>
+          <button class="btn calDiv__btn d-none 2nd-toggle-btn" id="2**">
+            2<sup>x</sup>
+          </button>
+          <button class="btn calDiv__btn fw-bold" id="4">4</button>
+          <button class="btn calDiv__btn fw-bold" id="5">5</button>
+          <button class="btn calDiv__btn fw-bold" id="6">6</button>
+          <button class="btn calDiv__btn" id="-"><b>-</b></button>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-1">
+          <button class="btn calDiv__btn d-inline 2nd-toggle-btn" id="log1">
+            log
+          </button>
+          <button class="btn calDiv__btn d-none 2nd-toggle-btn" id="log2">
+            log <sub>y</sub>x
+          </button>
+          <button class="btn calDiv__btn fw-bold" id="1">1</button>
+          <button class="btn calDiv__btn fw-bold" id="2">2</button>
+          <button class="btn calDiv__btn fw-bold" id="3">3</button>
+          <button class="btn calDiv__btn" id="+"><b>+</b></button>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-1">
+          <button class="btn calDiv__btn d-inline 2nd-toggle-btn" id="ln">
+            ln
+          </button>
+          <button class="btn calDiv__btn d-none 2nd-toggle-btn" id="e-sq-x">
+            e <sup>x</sup>
+          </button>
+          <button class="btn calDiv__btn" id="plus-minus">+/-</button>
+          <button class="btn calDiv__btn fw-bold" id="0">0</button>
+          <button class="btn calDiv__btn" id=".">.</button>
+          <button class="btn calDiv__btn calDiv__btn--blue" id="=">
+            <b>=</b>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
