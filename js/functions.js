@@ -386,11 +386,11 @@ function cotTrigonoOperations(clickedItem, value) {
 }
 
 //error handling function
-function showErrForSomeTime(string) {
-  string !== undefined ? string : (string = "Invalid Input!");
-  document.getElementById("error-div").innerHTML = string;
+function showErrForSomeTime(string = "Invalid Input !") {
+  const errorDiv = document.getElementById("error-div");
+  errorDiv.innerHTML = string;
   setTimeout(() => {
-    document.getElementById("error-div").innerHTML = "";
+    errorDiv.innerHTML = "";
   }, 5000);
 }
 
